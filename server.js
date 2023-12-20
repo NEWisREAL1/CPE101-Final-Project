@@ -8,6 +8,7 @@ app.use(express.json()); // Middleware for parsing JSON in request body
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const key = process.env.API_KEY;
+//const key = process.env.API_KEY_2;
 
 async function getData() {
   try {
@@ -55,8 +56,10 @@ app.post('/api/filter', async (req, res) => {
       // -------- Filtering -------- //
 
       // --- Movie / Series Filter ---//
-      if (filters.type != movie.type) {
-        legitMovie = 0;
+      if (filters.type) {
+        if (filters.type != movie.type) {
+          legitMovie = 0;
+        }
       }
 
       // --- Genres Filter --- //
@@ -159,6 +162,85 @@ app.post('/api/filter', async (req, res) => {
 
     res.json(movieList);
   } 
+  catch (err) {
+    console.log('An error occurred.');
+    console.error(err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.get('/api/loadMovies', async (req, res) => {
+  try {
+    console.log("got starting page request...");
+    const movies = {
+      "hits": [],
+      "action": []
+    };
+    const data = await getData();
+    console.log('Movies database fetched successfully.');
+    const hitsMovieList = [];
+
+    for (let i = 0; i < data.movies.length; i++) {
+      const movie = data.movies[i];
+
+      if (parseInt(movie.year) >= 2023) {
+        const omdbInfo = await getOMDB(movie.imdbID);
+        movie.language = omdbInfo.Language.split(", ");
+        const runtime = parseInt(omdbInfo.Runtime);
+        movie.runtime = `${runtime} min`;
+        movie.rated = omdbInfo.Rated;
+        movie.plot = omdbInfo.Plot;
+        movie.posterLink = omdbInfo.Poster;
+        movie.ratings = omdbInfo.Ratings;
+        movie.meta = omdbInfo.Metascore;
+        movie.imdbVotes = omdbInfo.imdbVotes;
+        hitsMovieList.push(movie)
+      }
+
+      if (hitsMovieList.length >= 8) {
+        movies.hits = hitsMovieList;
+        break;
+      }
+    }
+
+    res.json(movies)
+  }
+  catch (err) {
+    console.log('An error occurred.');
+    console.error(err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+  
+});
+
+app.get('/api/search/:keyword', async (req, res) => {
+  try {
+    console.log(`fetching in search function... keyword ${req.params.keyword}`);
+    const searchRes = await fetch(`https://www.omdbapi.com/?s=${req.params.keyword}&apikey=${key}`);
+    const results = await searchRes.json();
+    const resultsData = [];
+    for (let result of results.Search) {
+      const omdbInfo = await getOMDB(result.imdbID);
+      const movie = {};
+
+      const runtime = parseInt(omdbInfo.Runtime);
+      movie.runtime = `${runtime} min`;
+
+      movie.title = omdbInfo.Title;
+      movie.year = omdbInfo.Year;
+      movie.type = omdbInfo.Type;
+      movie.genres = omdbInfo.Genre.split(", ")
+      movie.language = omdbInfo.Language.split(", ");
+      movie.rated = omdbInfo.Rated;
+      movie.plot = omdbInfo.Plot;
+      movie.posterLink = omdbInfo.Poster;
+      movie.ratings = omdbInfo.Ratings;
+      movie.meta = omdbInfo.Metascore;
+      movie.imdbVotes = omdbInfo.imdbVotes;
+      resultsData.push(movie);
+    }
+    res.json(resultsData)
+  }
   catch (err) {
     console.log('An error occurred.');
     console.error(err);

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-widthm,initial-scale=1.0">
+    <title>MOVIE GURU</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/lightslider.css">
+    <!--js-link-------------------------------------->
+    <script src="js/JQuery3.3.1.js"></script>
+    <script src="js/lightslider.js"></script>
+    <script defer src="js/app.js"></script>
+    <!--fav icon---------------------------------------->
+    <link rel="shortcut icon" href="images/logo icon.png" />
+    <!--using FontAwesome------------------------------>
+    <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body id="body" class="dark-mode" onload="searchMovies()">
+    <!--naviation------------------------------>
+    <nav>
+        <!--logo------------------------------->
+        <a href="index.html" class="logo">
+            <img src="images/logo icon.png" />
+          </a>
+        <!--search----------------------------->
+        <div class="search">
+          <input type="text" onkeydown="key_down(event)" id="searchbar" placeholder="Find Your Movie" />
+          <!--search-icon----------------------------->
+          <i class="fas fa-search"></i>
+        </div>
+        <!--menu--btn-------------------------->
+        <input type="checkbox" class="menu-btn" id="menu-btn">
+        <label class="menu-icon" for="menu-btn">
+            <span class="nav-icon"></span>
+        </label>
+        <!--manu------------------------------->
+        <div class="menu" >
+            <li><a href="#" style="text-align: top; color: #FFDFE3;">Home</a></li>
+            <div class="dropdown">
+                <li><a href="#" style="text-align: top; color: #FFDFE3;" >More</a></li>
+                <div class="dropdown-content">
+                  <a href="#new ">New movies</a>
+                  <a href="#Action">Action movies</a>
+                    <a href="#Horror">Horror movies</a>
+                    <a href="#">Action movies</a>
+                    <a href="#">Action movies</a>
+                    <a href="#">Action movies</a>
+                  </div>
+            </div>
+            <!-- <li><button type="button" class="btn-sn" name="dark_light" onclick="toggleDarkLight()"><i class="fa fa-sun-o" aria-hidden="true"></i></button></li> &nbsp; -->
+            <li>
+              <!-- <button type="button" class="btn-sn" onclick="toggleDarkLight()">
+                <i class="fa fa-sun-o" aria-hidden="true"></i> | <i class="fa fa-moon-o" aria-hidden="true"></i>
+              </button> -->
+              <button type="button" name="dark_light" onclick="toggleDarkLight()" class="btn-sn" style="margin-top: 5px; margin-left: 15px;">
+                <i class="fa fa-sun-o" aria-hidden="true"></i> | 
+                <i class="fa fa-moon-o" aria-hidden="true"></i>
+              </button>
+            </li>
+            
+          </div>
+    </nav>
+    <div style="margin: 0% 7% 0% 7%;">
+      <section id="main">
+        <!--show--------------------------------------->
+            <!--heading------------------------------------>
+            <div class="popup" id="popup" style="margin-top: 3%; z-index: 1; position: fixed;">
+              <table style=" border: 0px solid black; width: 100%; margin-top: 10%; text-align: left">
+                <tr>
+                  <td rowspan="4" style=" border: 0px solid black; width: 30%; text-align: center">
+                    <img src="" id="popupPoster"></td>
+                    <td><span id="popupType">(type)</span></td>
+                  </tr>
+                  <tr>
+                    <td><span id="popupTitle" style="font-size: 2rem;">(title)</span></td>
+                  </tr>
+                  <tr>
+                    <td><span id="popupYear">(year)</span> &#8226;
+                      <span id="popupRated">(rated)</span> &#8226;
+                      <span id="popupRuntime">(runtime)</span> |
+                      <span id="popupGenre0"></span>
+                      <span id="popupGenre1"></span>
+                      <span id="popupGenre2"></span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <br>
+                      <div id="popupPlot">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus similique amet minus nesciunt ex modi rerum possimus! Molestiae, similique sit atque, modi nulla reprehenderit, adipisci natus expedita quibusdam voluptate delectus.
+                        Odio sapiente delectus corrupti eum. Sequi placeat ab cum molestiae non rem aliquid necessitatibus commodi tempore recusandae fuga adipisci repudiandae, consequatur voluptas nemo minus ut incidunt porro laborum iusto nisi?
+                      </div>
+                      <br><br>
+                    </td>
+                      </tr>
+                    </table>
+                    <table style=" border: 0px solid black; width: 100%; margin-top: 10%; margin-top: 2%;">
+                      <tr>
+                        <td style=" border: 0px solid black; width: 30%;">
+                          <span>IMDB RATING</span></td>
+                          <td><span>Rotten Tomato</span></td>
+                          <td><span>META Score</span></td>
+                        </tr>
+                        <tr>
+                            <td><span id="popupImdbRate">(imdb rating)</span></td>
+                            <td><span id="popupTomatoRate">(rt rating)</span></td>
+                            <td><span id="popupMeta">(meta)</span></td>
+                        </tr>
+                    </table>
+                    
+                    <button type="button" onclick="closePopup()">Close</button>
+                  </div>
+            <br><br><br>
+            <h1 class="showcase-heading" id="new">Result for <span id="keyword"></span></h1>
+            <!--showcase-box----------------------------------->
+            <ul class="search-result">
+                <!--box-1-------------------------------------->
+                <li class="resultbox">
+                    <button id="search0" onclick="openPopup('search0')" style="border: 0px; background-color: transparent;">
+                      <div class="movies-box">
+                        <!--img---------------------------------------->
+                        <div class="movies-img">
+                          <img src="img/loading.jpg" id="posterSearch0">
+                        </div>
+                        <a href="#" id="SearchTitle0">
+                          Loading...
+                        </a>
+                      </div>
+                    </button>
+                  </li>
+                  <li class="resultbox">
+                    <button id="search1" onclick="openPopup('search1')" style="border: 0px; background-color: transparent;">
+                    <div class="movies-box">
+                        <!--img---------------------------------------->
+                        <div class="movies-img">
+                            <img src="img/loading.jpg" id="posterSearch1">
+                        </div>
+                        <a href="#" id="SearchTitle1">
+                          Loading...
+                        </a>
+                      </div>
+                    </button>
+                </li>
+                <li class="result-box">
+                  <button id="search2" onclick="openPopup('search2')" style="border: 0px; background-color: transparent;">
+                    <div class="movies-box">
+                      <!--img---------------------------------------->
+                      <div class="movies-img">
+                        <img src="img/loading.jpg" id="posterSearch2">
+                      </div>
+                      <a href="#" id="SearchTitle2">
+                        Loading...
+                      </a>
+                        </div>
+                      </button>
+                    </li>
+                    <li class="resultbox">
+                      <button id="search3" onclick="openPopup('search3')" style="border: 0px; background-color: transparent;">
+                        <div class="movies-box">
+                          <!--img---------------------------------------->
+                          <div class="movies-img">
+
+                            <img src="img/loading.jpg" id="posterSearch3">
+                          </div>
+                          <a href="#" id="SearchTitle3">
+                            Loading...
+                          </a>
+                        </div>
+                      </button>
+                </li>
+                <li class="resultbox">
+                  <button id="search4" onclick="openPopup('search4')" style="border: 0px; background-color: transparent;">
+                    <div class="movies-box">
+                      <!--img---------------------------------------->
+                      <div class="movies-img">
+                        <img src="img/loading.jpg" id="posterSearch4">
+                      </div>
+                      <a href="#" id="SearchTitle4">
+                        Loading...
+                            </a>
+                          </div>
+                        </button>
+                      </li>
+                      <li class="resultbox">
+                    <button id="search5" onclick="openPopup('search5')" style="border: 0px; background-color: transparent;">
+                        <div class="movies-box">
+                          <!--img---------------------------------------->
+                          <div class="movies-img">
+    
+                                <img src="img/loading.jpg" id="posterSearch5">
+                            </div>
+                            <a href="#" id="SearchTitle5">
+                                Loading...
+                              </a>
+                        </div>
+                      </button>
+                    </li>
+                <li class="resultbox">
+                    <button id="search6" onclick="openPopup('search6')" style="border: 0px; background-color: transparent;">
+                        <div class="movies-box">
+                          <!--img---------------------------------------->
+                          <div class="movies-img">
+
+                            <img src="img/loading.jpg" id="posterSearch6">
+                            </div>
+                            <a href="#" id="SearchTitle6">
+                              Loading...
+                            </a>
+                          </div>
+                        </button>
+                </li>
+                <li class="resultbox">
+                  <button id="search7" onclick="openPopup('search7')" style="border: 0px; background-color: transparent;">
+                        <div class="movies-box">
+                          <!--img---------------------------------------->
+                          <div class="movies-img">
+
+                            <img src="img/loading.jpg" id="posterSearch7">
+                          </div>
+                          <a href="#" id="SearchTitle7">
+                            Loading...
+                          </a>
+                        </div>
+                      </button>
+                    </li>
+                <li class="resultbox">
+                  <button id="search8" onclick="openPopup('search8')" style="border: 0px; background-color: transparent;">
+                        <div class="movies-box">
+                          <!--img---------------------------------------->
+                          <div class="movies-img">
+
+                            <img src="img/loading.jpg" id="posterSearch8">
+                          </div>
+                          <a href="#" id="SearchTitle8">
+                            Loading...
+                          </a>
+                        </div>
+                      </button>
+                    </li>
+            </ul>
+          </section>
+    <!--footer------------------------------------->
+    <footer>
+      <p>Going To Internet, Ltd Consumer Website</p>
+      <p>Coryright 2023 - GoingToInternet</p>
+    </footer>
+    <div>
+      <!-- <button class="scrollup"  title="Go to top">
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+      </button><br> -->
+      <a href="#0" class="cd-top" title="Go to top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+    </div>
+
+    <!--slider-script----------------------------------------->
+    <script>
+      $(document).ready(function () {
+        $('#autoWidth,#autoWidth2').lightSlider({
+                autoWidth: true,
+                loop: true,
+                onSliderLoad: function () {
+                  $('#autoWidth,#autoWidth2').removeClass('cS-hidden');
+                }
+              });
+        });
+        </script>
+    <script>
+        <!--movecollum--------------------------------------------------------------------------->
+        jQuery(document).ready(function ($) {
+          
+            var offset = 300,
+            offset_opacity = 1200,
+            scroll_top_duration = 700,
+            
+                $back_to_top = $('.cd-top');
+
+                $(window).scroll(function () {
+                ($(this).scrollTop() > offset) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
+
+                if ($(this).scrollTop() > offset_opacity) {
+                    $back_to_top.addClass('cd-fade-out');
+                }
+              });
+              
+            //smooth scroll to top
+            $back_to_top.on('click', function (event) {
+              event.preventDefault();
+              $('body,html').animate({
+                scrollTop: 0,
+              }, scroll_top_duration);
+            });
+
+          });
+
+    </script>
+    <script>
+      // Get the modal
+      var modal = document.getElementById("myModal");
+      
+      // Get the button that opens the modal
+      var btn = document.getElementById("myBtn");
+      
+      // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        
+        // When the user clicks the button, open the modal 
+        btn.onclick = function () {
+          modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+          span.onclick = function () {
+            modal.style.display = "none";
+          }
+          
+          // When the user clicks anywhere outside of the modal, close it
+          window.onclick = function (event) {
+            if (event.target == modal) {
+              modal.style.display = "none";
+            }
+        }
+    </script>
+    <script src="js/filter.js"></script>
+    <!-- <script>
+      var sun = document.getElementById("sun");
+      var night = document.getElementById("night");
+      
+      sun.onclick = function () {
+        <link href="css/style.css" rel="stylesheet" />
+      }
+    </script> -->
+  </body>
+
+  </html>

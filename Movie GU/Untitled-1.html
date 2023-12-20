@@ -68,7 +68,7 @@
         <section id="main">
             <!--show--------------------------------------->
             <!--heading------------------------------------>
-            <center>
+            <center id="hero">
                 <div style="margin-top: 10%; font-size: 25px;">
                     <img src="images/movieslogo.png" style="height: 20%; width: 20%;">
                     <h1>Are you having trouble finding movies to watch?
@@ -77,52 +77,54 @@
                     </h1>
                 </div>
                 <div class="container">
-                    <button type="submit" class="btn" onclick="openPopup()">
+                    <button type="submit" class="btn" onclick="startQA()">
                         Find a movie to watch
                     </button>
-                    <div class="popup" id="popup" style="margin-top: 3%; z-index: 1; position: fixed;">
-                        <table style=" border: 0px solid black; width: 100%; margin-top: 10%; text-align: left">
-                            <tr>
-                                <td rowspan="4" style=" border: 0px solid black; width: 30%; text-align: center">
-                                    <img src="images/4KINGS-2.jpg" ></td>
-                                <td><span>Movie</span></td>
-                              </tr>
-                              <tr>
-                                <td><span>Wish</span></td>
-                              </tr>
-                              <tr>
-                                <td><span>2023</span> &#8226;
-                                <span>PG</span> &#8226;
-                                <span>125 mins</span> &#8226;
-                                <span>Action</span> |
-                                <span>Sci-Fi</span> &#8226;
-                                <span>Adventure</span>
-                              </td>
-                              </tr>
-                              <tr>
-                                <td><br>Wish พรมหัศจรรย์ โปรเจคฉลองครบรอบ 100 ปี ของดิสนีย์ เขียนบทโดย Jennifer Lee กำกับภาพยนตร์โดย Chris Buck ผู้พา Frozen ไปคว้ารางวัลจากหลากหลายเวที ร่วมกับ ฝน-ประสานสุข วีระสุนทร คนไทยที่เริ่มทำงานร่วมกับ Disney ในตำแหน่งวาดสตอรีบอร์ดเรื่อง Frozen, Zootopia และ Moana ก่อนจะขยับมาเป็น Head of Story รับหน้าที่เป็นหัวหน้าดูแลด้านเนื้อเรื่องให้กับ Raya and the Last Dragon รายากับมังกรตัวสุดท้าย ซึ่งเล่าถึงเรื่องราวของวัฒนธรรมเอเชียตะวันออกเฉียงใต้ผ่านตัวละครนักรบหญิงที่มีชื่อว่า ‘รายา’ Wish จะพาคุณไปสำรวจอาณาจักรแห่งความปรารถนา นำโดยเด็กสาววัย 17 ปี ชื่อ Asha พากย์เสียงโดย Ariana DeBose นักแสดง Queer เชื้อสายแอฟริกัน-ละตินคนแรก ผู้ชนะรางวัลออสการ์สาขานักแสดงสมทบหญิงยอดเยี่ยมจาก West Side Story (2021) และยังมี Julia Michaels มาร้องเพลงประกอบให้อีกด้วย<br><br></td>
-                              </tr>
-                        </table>
-                        <table style=" border: 0px solid black; width: 100%; margin-top: 10%; margin-top: 2%;">
-                            <tr>
-                                <td style=" border: 0px solid black; width: 30%;">
-                                    <span>IMDB RATING</span></td>
-                                <td><span>Rotten Tometo</span></td>
-                                <td><span>META Score</span></td>
-                              </tr>
-                              <tr>
-                                <td style="">
-                                    <span>8.9/10</span></td>
-                                <td><span>93%</span></td>
-                                <td><span>90</span></td>
-                              </tr>
-                        </table>
-                        
-                        <button type="button" onclick="closePopup()">Close</button>
-                    </div>
-
                 </div>
             </center>
+            <center id="questioning">
+                
+            </center>
+            <div class="popup" id="popup" style="margin-top: 3%; z-index: 1; position: fixed;">
+                <table style=" border: 0px solid black; width: 100%; margin-top: 10%; text-align: left">
+                    <tr>
+                        <td rowspan="4" style=" border: 0px solid black; width: 30%; text-align: center">
+                            <img src="images/4KINGS-2.jpg" ></td>
+                        <td><span>Movie</span></td>
+                      </tr>
+                      <tr>
+                        <td><span>Wish</span></td>
+                      </tr>
+                      <tr>
+                        <td><span>2023</span> &#8226;
+                        <span>PG</span> &#8226;
+                        <span>125 mins</span> &#8226;
+                        <span>Action</span> |
+                        <span>Sci-Fi</span> &#8226;
+                        <span>Adventure</span>
+                      </td>
+                      </tr>
+                      <tr>
+                        <td><br>Wish พรมหัศจรรย์ โปรเจคฉลองครบรอบ 100 ปี ของดิสนีย์ เขียนบทโดย Jennifer Lee กำกับภาพยนตร์โดย Chris Buck ผู้พา Frozen ไปคว้ารางวัลจากหลากหลายเวที ร่วมกับ ฝน-ประสานสุข วีระสุนทร คนไทยที่เริ่มทำงานร่วมกับ Disney ในตำแหน่งวาดสตอรีบอร์ดเรื่อง Frozen, Zootopia และ Moana ก่อนจะขยับมาเป็น Head of Story รับหน้าที่เป็นหัวหน้าดูแลด้านเนื้อเรื่องให้กับ Raya and the Last Dragon รายากับมังกรตัวสุดท้าย ซึ่งเล่าถึงเรื่องราวของวัฒนธรรมเอเชียตะวันออกเฉียงใต้ผ่านตัวละครนักรบหญิงที่มีชื่อว่า ‘รายา’ Wish จะพาคุณไปสำรวจอาณาจักรแห่งความปรารถนา นำโดยเด็กสาววัย 17 ปี ชื่อ Asha พากย์เสียงโดย Ariana DeBose นักแสดง Queer เชื้อสายแอฟริกัน-ละตินคนแรก ผู้ชนะรางวัลออสการ์สาขานักแสดงสมทบหญิงยอดเยี่ยมจาก West Side Story (2021) และยังมี Julia Michaels มาร้องเพลงประกอบให้อีกด้วย<br><br></td>
+                      </tr>
+                </table>
+                <table style=" border: 0px solid black; width: 100%; margin-top: 10%; margin-top: 2%;">
+                    <tr>
+                        <td style=" border: 0px solid black; width: 30%;">
+                            <span>IMDB RATING</span></td>
+                        <td><span>Rotten Tometo</span></td>
+                        <td><span>META Score</span></td>
+                      </tr>
+                      <tr>
+                        <td style="">
+                            <span>8.9/10</span></td>
+                        <td><span>93%</span></td>
+                        <td><span>90</span></td>
+                      </tr>
+                </table>
+                
+                <button type="button" onclick="closePopup()">Close</button>
+            </div>
             <br><br><br>
             <h1 class="showcase-heading" id="new">new movies </h1>
             <!--showcase-box----------------------------------->

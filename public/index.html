@@ -1,76 +1,575 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prototype</title>
-  <style>
-    .page-body {
-      margin: auto;
-      width: 100%;
-      box-sizing: border-box;
-      border: none;
-      padding: 10px;
-      text-align: center;
-    }
-    #start {
-      padding: 2rem;
-      width: fit-content;
-      margin: auto;
-      background-color: orange;
-      font-weight: 600;
-      color: white;
-      border: none;
-      border-radius: 1rem;
-    }
-    .choice {
-      display: none;
-      padding: 1rem;
-      margin: 0.5rem auto 0.5rem auto;
-      text-align: left;
-      width: 20rem;
-    }
-  </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-widthm,initial-scale=1.0">
+    <title>MOVIE GURU</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/lightslider.css">
+    <!--js-link-------------------------------------->
+    <script src="js/JQuery3.3.1.js"></script>
+    <script src="js/lightslider.js"></script>
+    <script defer src="js/app.js"></script>
+    <!--fav icon---------------------------------------->
+    <link rel="shortcut icon" href="images/logo icon.png" />
+    <!--using FontAwesome------------------------------>
+    <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-  <div class="page-body">
 
-    <button id="start" type="button" onclick="startQA(0)">START</button>
+<body id="body" class="dark-mode" onload="loadMovies()">
+    <!--naviation------------------------------>
+    <nav>
+        <!--logo------------------------------->
+        <a href="#" class="logo">
+            <img src="images/logo icon.png" />
+          </a>
+        <!--search----------------------------->
+        <div class="search">
+          <input type="text" onkeydown="key_down(event)" id="searchbar" placeholder="Find Your Movie" />
+          <!--search-icon----------------------------->
+          <i class="fas fa-search"></i>
+        </div>
+        <!--menu--btn-------------------------->
+        <input type="checkbox" class="menu-btn" id="menu-btn">
+        <label class="menu-icon" for="menu-btn">
+            <span class="nav-icon"></span>
+        </label>
+        <!--manu------------------------------->
+        <div class="menu" >
+            <li><a href="#" style="text-align: top; color: #FFDFE3;">Home</a></li>
+            <div class="dropdown">
+                <li><a href="#" style="text-align: top; color: #FFDFE3;" >More</a></li>
+                <div class="dropdown-content">
+                  <a href="#new ">New movies</a>
+                  <a href="#Action">Action movies</a>
+                    <a href="#Horror">Horror movies</a>
+                    <a href="#">Action movies</a>
+                    <a href="#">Action movies</a>
+                    <a href="#">Action movies</a>
+                  </div>
+            </div>
+            <!-- <li><button type="button" class="btn-sn" name="dark_light" onclick="toggleDarkLight()"><i class="fa fa-sun-o" aria-hidden="true"></i></button></li> &nbsp; -->
+            <li>
+              <!-- <button type="button" class="btn-sn" onclick="toggleDarkLight()">
+                <i class="fa fa-sun-o" aria-hidden="true"></i> | <i class="fa fa-moon-o" aria-hidden="true"></i>
+              </button> -->
+              <button type="button" name="dark_light" onclick="toggleDarkLight()" class="btn-sn" style="margin-top: 5px; margin-left: 15px;">
+                <i class="fa fa-sun-o" aria-hidden="true"></i> | 
+                <i class="fa fa-moon-o" aria-hidden="true"></i>
+              </button>
+            </li>
+            
+          </div>
+    </nav>
+    <div style="margin: 0% 7% 0% 7%;">
+      <section id="main">
+        <!--show--------------------------------------->
+            <!--heading------------------------------------>
+            <center id="hero">
+              <div style="margin-top: 5%; font-size: 25px;">
+                <img src="images/movieslogo.png" style="height: 20%; width: 20%;">
+                <h1>Are you having trouble finding movies to watch?
+                  <br>
+                  If you don't know what to watch, just click.
+                </h1>
+              </div>
+              <div class="container">
+                <button type="submit" class="btn" onclick="startQA(0)">
+                  Find a movie to watch
+                </button>
+                </div>
+            </center>
+            <center id="questioning">
+              <div style="margin-top: 5%; font-size: 25px;">
+                <div id="question-text"></div>
+                
+                <div id="choice0" class="choice"></div>
+                <div id="choice1" class="choice"></div>
+                <div id="choice2" class="choice"></div>
+                <div id="choice3" class="choice"></div>
+                <div id="choice4" class="choice"></div>
+                <div id="choice5" class="choice"></div>
+                <div id="choice6" class="choice"></div>
+                <div id="choice7" class="choice"></div>
+                <div id="choice8" class="choice"></div>
+                <div id="choice9" class="choice"></div>
+                
+                <div id="statusBox"></div>
+                
+                <div id="result-warp-wrap">
+                  <div class="result-warp">
+                    <img id="posterIMG0" src="" class="resultPoster" onclick="openPopup('filter0')">
+                    <div id="movieData0" class="resultText"></div>
+                  </div>
+                  <div class="result-warp">
+                    <img id="posterIMG1" src="" class="resultPoster" onclick="openPopup('filter1')">
+                    <div id="movieData1" src="" class="resultText"></div>
+                  </div>
+                  <div class="result-warp">
+                    <img id="posterIMG2" src="" class="resultPoster" onclick="openPopup('filter2')">
+                    <div id="movieData2" class="resultText"></div>
+                  </div>
+                  <div class="result-warp">
+                    <img id="posterIMG3" src="" class="resultPoster" onclick="openPopup('filter3')">
+                    <div id="movieData3" class="resultText"></div>
+                  </div>
+                  <div class="result-warp">
+                    <img id="posterIMG4" src="" class="resultPoster" onclick="openPopup('filter4')">
+                    <div id="movieData4" class="resultText"></div>
+                  </div>
+                </div>
+                
+              </div>
+            </center>
 
-    <div id="question-text"></div>
-    <button id="choice0" class="choice"></button>
-    <button id="choice1" class="choice"></button>
-    <button id="choice2" class="choice"></button>
-    <button id="choice3" class="choice"></button>
-    <button id="choice4" class="choice"></button>
-    <button id="choice5" class="choice"></button>
-    <button id="choice6" class="choice"></button>
-    <button id="choice7" class="choice"></button>
-    <button id="choice8" class="choice"></button>
-    
-    <section id="statusBox"></section>
-    <img src="" alt="" id="PosterIMG0">
-    <section id="dataField0"></section>
-    <img src="" alt="" id="PosterIMG1">
-    <section id="dataField1"></section>
-    <img src="" alt="" id="PosterIMG2">
-    <section id="dataField2"></section>
-    <img src="" alt="" id="PosterIMG3">
-    <section id="dataField3"></section>
-    <img src="" alt="" id="PosterIMG4">
-    <section id="dataField4"></section>
-    <img src="" alt="" id="PosterIMG5">
-    <section id="dataField5"></section>
-    <img src="" alt="" id="PosterIMG6">
-    <section id="dataField6"></section>
-    <img src="" alt="" id="PosterIMG7">
-    <section id="dataField7"></section>
-    <img src="" alt="" id="PosterIMG8">
-    <section id="dataField8"></section>
-    <img src="" alt="" id="PosterIMG9">
-    <section id="dataField9"></section>
-  </div>
+            <div class="popup" id="popup" style="margin-top: 3%; z-index: 1; position: fixed;">
+              <table style=" border: 0px solid black; width: 100%; margin-top: 10%; text-align: left">
+                <tr>
+                  <td rowspan="4" style=" border: 0px solid black; width: 30%; text-align: center">
+                    <img src="" id="popupPoster"></td>
+                    <td><span id="popupType">(type)</span></td>
+                  </tr>
+                  <tr>
+                    <td><span id="popupTitle" style="font-size: 2rem;">(title)</span></td>
+                  </tr>
+                  <tr>
+                    <td><span id="popupYear">(year)</span> &#8226;
+                      <span id="popupRated">(rated)</span> &#8226;
+                      <span id="popupRuntime">(runtime)</span> |
+                      <span id="popupGenre0"></span>
+                      <span id="popupGenre1"></span>
+                      <span id="popupGenre2"></span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <br>
+                      <div id="popupPlot">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus similique amet minus nesciunt ex modi rerum possimus! Molestiae, similique sit atque, modi nulla reprehenderit, adipisci natus expedita quibusdam voluptate delectus.
+                        Odio sapiente delectus corrupti eum. Sequi placeat ab cum molestiae non rem aliquid necessitatibus commodi tempore recusandae fuga adipisci repudiandae, consequatur voluptas nemo minus ut incidunt porro laborum iusto nisi?
+                      </div>
+                      <br><br>
+                    </td>
+                      </tr>
+                    </table>
+                    <table style=" border: 0px solid black; width: 100%; margin-top: 10%; margin-top: 2%;">
+                      <tr>
+                        <td style=" border: 0px solid black; width: 30%;">
+                          <span>IMDB RATING</span></td>
+                          <td><span>Rotten Tomato</span></td>
+                          <td><span>META Score</span></td>
+                        </tr>
+                        <tr>
+                            <td><span id="popupImdbRate">(imdb rating)</span></td>
+                            <td><span id="popupTomatoRate">(rt rating)</span></td>
+                            <td><span id="popupMeta">(meta)</span></td>
+                        </tr>
+                    </table>
+                    
+                    <button type="button" onclick="closePopup()">Close</button>
+                  </div>
+            <br><br><br>
+            <h1 class="showcase-heading" id="new">new movies</h1>
+            <!--showcase-box----------------------------------->
+            <ul id="autoWidth" class="cs-hidden">
+                <!--box-1-------------------------------------->
+                <li class="item-a">
+                    <button id="hits0" onclick="openPopup('hits0')" style="border: 0px; background-color: transparent;">
+                      <div class="movies-box">
+                        <!--img---------------------------------------->
+                        <div class="movies-img">
+                          <div class="quality">New movies</div>
+                          <img src="" id="posterHits0">
+                        </div>
+                        <a href="#" id="hitsTitle0">
+                          wish(2023)
+                        </a>
+                      </div>
+                    </button>
+                  </li>
+                  <li class="item-b">
+                    <button id="hits1" onclick="openPopup('hits1')" style="border: 0px; background-color: transparent;">
+                    <div class="movies-box">
+                        <!--img---------------------------------------->
+                        <div class="movies-img">
+                            <div class="quality">New movies</div>
+                            <img src="" id="posterHits1">
+                        </div>
+                        <a href="#" id="hitsTitle1">
+                          wish(2023)
+                        </a>
+                      </div>
+                    </button>
+                </li>
+                <li class="item-c">
+                  <button id="hits2" onclick="openPopup('hits2')" style="border: 0px; background-color: transparent;">
+                    <div class="movies-box">
+                      <!--img---------------------------------------->
+                      <div class="movies-img">
+                        <div class="quality">New movies</div>
+                        <img src="" id="posterHits2">
+                      </div>
+                      <a href="#" id="hitsTitle2">
+                        wish(2023)
+                      </a>
+                        </div>
+                      </button>
+                    </li>
+                    <li class="item-d">
+                      <button id="hits3" onclick="openPopup()" style="border: 0px; background-color: transparent;">
+                        <div class="movies-box">
+                          <!--img---------------------------------------->
+                          <div class="movies-img">
+                            <div class="quality">New movies</div>
+                            <img src="" id="posterHits3">
+                          </div>
+                          <a href="#" id="hitsTitle3">
+                            wish(2023)
+                          </a>
+                        </div>
+                      </button>
+                </li>
+                <li class="item-e">
+                  <button id="hits4" onclick="openPopup()" style="border: 0px; background-color: transparent;">
+                    <div class="movies-box">
+                      <!--img---------------------------------------->
+                      <div class="movies-img">
+                        <div class="quality">New movies</div>
+                        <img src="" id="posterHits4">
+                      </div>
+                      <a href="#" id="hitsTitle4">
+                        wish(2023)
+                            </a>
+                          </div>
+                        </button>
+                      </li>
+                      <li class="item-f">
+                    <button onclick="openPopup()" style="border: 0px; background-color: transparent;">
+                        <div id="hits5" class="movies-box">
+                          <!--img---------------------------------------->
+                          <div class="movies-img">
+                                <div class="quality">New movies</div>
+                                <img src="" id="posterHits5">
+                            </div>
+                            <a href="#" id="hitsTitle5">
+                                wish(2023)
+                              </a>
+                        </div>
+                      </button>
+                    </li>
+                <li class="item-g">
+                    <button id="hits6" onclick="openPopup()" style="border: 0px; background-color: transparent;">
+                        <div class="movies-box">
+                          <!--img---------------------------------------->
+                          <div class="movies-img">
+                            <div class="quality">New movies</div>
+                            <img src="" id="posterHits6">
+                            </div>
+                            <a href="#" id="hitsTitle6">
+                              wish(2023)
+                            </a>
+                          </div>
+                        </button>
+                </li>
+                <li class="item-h">
+                  <button id="hits7" onclick="openPopup()" style="border: 0px; background-color: transparent;">
+                        <div class="movies-box">
+                          <!--img---------------------------------------->
+                          <div class="movies-img">
+                            <div class="quality">New movies</div>
+                            <img src="" id="posterHits7">
+                          </div>
+                          <a href="#" id="hitsTitle7">
+                            wish(2023)
+                          </a>
+                        </div>
+                      </button>
+                    </li>
+            </ul>
+          </section>
+        <section id="Action">
+            <h1 class="showcase-heading">Actions</h1>
+            <!--showcase-box----------------------------------->
+            <ul id="autoWidth" class="cs-hidden">
+              <!--box-1-------------------------------------->
+              <li class="item-a">
+                <div class="movies-box">
+                  <!--img---------------------------------------->
+                  <div class="movies-img">
+                    <img src="images/4KINGS-2.jpg" id="action0" onclick="openPopup('action0')">
+                  </div>
+                  <a href="#">
+                    wish(2023)
+                  </a>
+                </div>
+              </li>
+              <li class="item-b">
+                <div class="movies-box">
+                  <!--img---------------------------------------->
+                  <div class="movies-img">
+                    <img src="images/4KINGS-2.jpg">
+                  </div>
+                  <a href="#">
+                    wish(2023)
+                  </a>
+                </div>
+                </li>
+                <li class="item-c">
+                    <div class="movies-box">
+                        <!--img---------------------------------------->
+                        <div class="movies-img">
+                          <img src="images/4KINGS-2.jpg">
+                        </div>
+                        <a href="#">
+                          wish(2023)
+                        </a>
+                      </div>
+                </li>
+                <li class="item-d">
+                  <div class="movies-box">
+                    <!--img---------------------------------------->
+                    <div class="movies-img">
+                      <img src="images/4KINGS-2.jpg">
+                    </div>
+                    <a href="#">
+                      wish(2023)
+                    </a>
+                    </div>
+                  </li>
+                  <li class="item-e">
+                    <div class="movies-box">
+                      <!--img---------------------------------------->
+                        <div class="movies-img">
+                          <img src="images/4KINGS-2.jpg">
+                        </div>
+                        <a href="#">
+                          wish(2023)
+                        </a>
+                      </div>
+                    </li>
+                <li class="item-e">
+                  <div class="movies-box">
+                    <!--img---------------------------------------->
+                    <div class="movies-img">
+                      <img src="images/4KINGS-2.jpg">
+                    </div>
+                    <a href="#">
+                      wish(2023)
+                    </a>
+                  </div>
+                </li>
+                <li class="item-e">
+                    <div class="movies-box">
+                      <!--img---------------------------------------->
+                        <div class="movies-img">
+                          <img src="images/4KINGS-2.jpg">
+                        </div>
+                        <a href="#">
+                          wish(2023)
+                        </a>
+                      </div>
+                    </li>
+                    <li class="item-e">
+                      <div class="movies-box">
+                        <!--img---------------------------------------->
+                        <div class="movies-img">
+                          <img src="images/4KINGS-2.jpg">
+                        </div>
+                        <a href="#">
+                            wish(2023)
+                          </a>
+                    </div>
+                </li>
+            </ul>
+          </section>
+        <section>
+            <h1 class="showcase-heading" id="Horror">Horror movie </h1>
+            <!--showcase-box----------------------------------->
+            <ul id="autoWidth" class="cs-hidden">
+                <!--box-1-------------------------------------->
+                <li class="item-a">
+                  <div class="movies-box">
+                    <!--img---------------------------------------->
+                    <div class="movies-img">
+                      <img src="images/4KINGS-2.jpg">
+                    </div>
+                    <a href="#">
+                      wish(2023)
+                    </a>
+                  </div>
+                </li>
+                <li class="item-b">
+                  <div class="movies-box">
+                    <!--img---------------------------------------->
+                    <div class="movies-img">
+                      <img src="images/4KINGS-2.jpg">
+                    </div>
+                    <a href="#">
+                      wish(2023)
+                    </a>
+                  </div>
+                </li>
+                <li class="item-c">
+                  <div class="movies-box">
+                        <!--img---------------------------------------->
+                        <div class="movies-img">
+                          <img src="images/4KINGS-2.jpg">
+                        </div>
+                        <a href="#">
+                          wish(2023)
+                        </a>
+                    </div>
+                  </li>
+                  <li class="item-d">
+                    <div class="movies-box">
+                      <!--img---------------------------------------->
+                      <div class="movies-img">
+                            <img src="images/4KINGS-2.jpg">
+                          </div>
+                          <a href="#">
+                            wish(2023)
+                          </a>
+                        </div>
+                      </li>
+                      <li class="item-e">
+                        <div class="movies-box">
+                          <!--img---------------------------------------->
+                          <div class="movies-img">
+                            <img src="images/4KINGS-2.jpg">
+                          </div>
+                          <a href="#">
+                            wish(2023)
+                          </a>
+                        </div>
+                </li>
+                <li class="item-e">
+                  <div class="movies-box">
+                    <!--img---------------------------------------->
+                        <div class="movies-img">
+                          <img src="images/4KINGS-2.jpg">
+                        </div>
+                        <a href="#">
+                          wish(2023)
+                        </a>
+                      </div>
+                    </li>
+                    <li class="item-e">
+                      <div class="movies-box">
+                        <!--img---------------------------------------->
+                        <div class="movies-img">
+                            <img src="images/4KINGS-2.jpg">
+                          </div>
+                          <a href="#">
+                            wish(2023)
+                          </a>
+                    </div>
+                </li>
+                <li class="item-e">
+                  <div class="movies-box">
+                    <!--img---------------------------------------->
+                    <div class="movies-img">
+                      <img src="images/4KINGS-2.jpg">
+                    </div>
+                    <a href="#">
+                            wish(2023)
+                          </a>
+                        </div>
+                      </li>
+                    </ul>
+                  </section>
+    </div>
+    <!--footer------------------------------------->
+    <footer>
+      <p>Going To Internet, Ltd Consumer Website</p>
+      <p>Coryright 2023 - GoingToInternet</p>
+    </footer>
+    <div>
+      <!-- <button class="scrollup"  title="Go to top">
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+      </button><br> -->
+      <a href="#0" class="cd-top" title="Go to top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+    </div>
 
-  <script src="script.js"></script>
-</body>
-</html>
+    <!--slider-script----------------------------------------->
+    <script>
+      $(document).ready(function () {
+        $('#autoWidth,#autoWidth2').lightSlider({
+                autoWidth: true,
+                loop: true,
+                onSliderLoad: function () {
+                  $('#autoWidth,#autoWidth2').removeClass('cS-hidden');
+                }
+              });
+        });
+        </script>
+    <script>
+        <!--movecollum--------------------------------------------------------------------------->
+        jQuery(document).ready(function ($) {
+          
+            var offset = 300,
+            offset_opacity = 1200,
+            scroll_top_duration = 700,
+            
+                $back_to_top = $('.cd-top');
+
+                $(window).scroll(function () {
+                ($(this).scrollTop() > offset) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
+
+                if ($(this).scrollTop() > offset_opacity) {
+                    $back_to_top.addClass('cd-fade-out');
+                }
+              });
+              
+            //smooth scroll to top
+            $back_to_top.on('click', function (event) {
+              event.preventDefault();
+              $('body,html').animate({
+                scrollTop: 0,
+              }, scroll_top_duration);
+            });
+
+          });
+
+    </script>
+    <script>
+      // Get the modal
+      var modal = document.getElementById("myModal");
+      
+      // Get the button that opens the modal
+      var btn = document.getElementById("myBtn");
+      
+      // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        
+        // When the user clicks the button, open the modal 
+        btn.onclick = function () {
+          modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+          span.onclick = function () {
+            modal.style.display = "none";
+          }
+          
+          // When the user clicks anywhere outside of the modal, close it
+          window.onclick = function (event) {
+            if (event.target == modal) {
+              modal.style.display = "none";
+            }
+        }
+    </script>
+    <script src="js/filter.js"></script>
+    <!-- <script>
+      var sun = document.getElementById("sun");
+      var night = document.getElementById("night");
+      
+      sun.onclick = function () {
+        <link href="css/style.css" rel="stylesheet" />
+      }
+    </script> -->
+  </body>
+
+  </html>

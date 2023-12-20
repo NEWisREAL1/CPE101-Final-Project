@@ -2,7 +2,7 @@
     "questions" : 
     [
         {
-            "qText": "1.How are you feeling today?",
+            "qText": "1. How are you feeling today?",
             "choices": [
                 { "cText": "Happy.", "value": ["Comedy"] },
                 { "cText": "Sad.", "value": ["Drama", "Musical"] },
@@ -13,7 +13,7 @@
             ]
         },
         {
-            "qText": "2.What is your preference?",
+            "qText": "2. What is your preference?",
             "choices": [
                 { "cText": "Movie.", "value": "movie" },
                 { "cText": "Series / TV Series.", "value": "tvSeries" },
@@ -21,7 +21,7 @@
             ]
         },
         {
-            "qText": "3.What duration of a movie are you comfortable with?",
+            "qText": "3. What duration of a movie are you comfortable with?",
             "choices": [
                 { "cText": "Less than 30 minutes.", "value": [null, 30] },
                 { "cText": "Between 30 - 60 minutes", "value": [30, 60] },
@@ -31,7 +31,7 @@
             ]
         },
         {
-            "qText": "4.Are you open to explore movies in different languages?",
+            "qText": "4. Are you open to explore movies in different languages?",
             "choices": [
                 { "cText": "English.", "value": "English" },
                 { "cText": "Thai.", "value": "Thai" },
@@ -44,7 +44,7 @@
             ]
         },
         {
-            "qText": "5.Let me know your preferred time frame.",
+            "qText": "5. Let me know your preferred time frame.",
             "choices": [
                 { "cText": "before 1900.", "value": [null, 1900] },
                 { "cText": "1901 - 1979.", "value": [1901, 1979] },
