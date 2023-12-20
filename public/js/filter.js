@@ -12,6 +12,9 @@ const moviesData = {
     "filter": [],
     "hits": [],
     "action": [],
+    "animation": [],
+    "drama": [],
+    "sciFan": [],
     "search": []
 }
 
@@ -30,6 +33,18 @@ function loadPopupData(id) {
     else if (sId == 'search') {
         movie = moviesData.search[nId];
     }
+    else if (sId == 'action') {
+        movie = moviesData.action[nId];
+    }
+    else if (sId == 'animation') {
+        movie = moviesData.animation[nId];
+    }
+    else if (sId == 'drama') {
+        movie = moviesData.drama[nId];
+    }
+    else if (sId == 'sciFan') {
+        movie = moviesData.sciFan[nId];
+    }
 
     document.getElementById('popupPoster').src = movie.posterLink;
         document.getElementById('popupType').innerText = movie.type;
@@ -37,6 +52,10 @@ function loadPopupData(id) {
         document.getElementById('popupYear').innerText = movie.year;
         document.getElementById('popupRated').innerText = movie.rated;
         document.getElementById('popupRuntime').innerText = movie.runtime;
+
+        document.getElementById(`popupGenre0`).innerText = '';
+        document.getElementById(`popupGenre1`).innerText = '';
+        document.getElementById(`popupGenre2`).innerText = '';
 
         if (typeof(movie.genres) == 'string') {
             document.getElementById('popupGenre0').innerText = movie.genres;
@@ -153,14 +172,54 @@ async function filterMovies() {
 
 async function loadMovies() {
     console.log("LOADING MOVIES");
-    const res = await fetch('/api/loadMovies');
-    const movies = await res.json();
+    let res = await fetch('/api/loadHits');
+    let movies = await res.json();
     console.log(movies);
 
     for (let i = 0; i < 8; i++) {
         moviesData.hits = movies.hits;
-        document.getElementById(`posterHits${i}`).src = movies.hits[i].posterLink;
-        document.getElementById(`hitsTitle${i}`).innerText = movies.hits[i].title;
+        document.getElementById(`posterHits${i}`).src = moviesData.hits[i].posterLink;
+        document.getElementById(`hitsTitle${i}`).innerText = moviesData.hits[i].title;
+    }
+
+    res = await fetch('/api/loadAction');
+    movies = await res.json();
+    console.log(movies);
+
+    for (let i = 0; i < 8; i++) {
+        moviesData.action = movies.Action;
+        document.getElementById(`posterAction${i}`).src = moviesData.action[i].posterLink;
+        document.getElementById(`actionTitle${i}`).innerText = moviesData.action[i].title;
+    }
+
+    res = await fetch('/api/loadAnimation');
+    movies = await res.json();
+    console.log(movies);
+
+    for (let i = 0; i < 8; i++) {
+        moviesData.animation = movies.Animation;
+        document.getElementById(`posterAnimation${i}`).src = moviesData.animation[i].posterLink;
+        document.getElementById(`animationTitle${i}`).innerText = moviesData.animation[i].title;
+    }
+
+    res = await fetch('/api/loadDrama');
+    movies = await res.json();
+    console.log(movies);
+
+    for (let i = 0; i < 8; i++) {
+        moviesData.drama = movies.Drama;
+        document.getElementById(`posterDrama${i}`).src = moviesData.drama[i].posterLink;
+        document.getElementById(`dramaTitle${i}`).innerText = moviesData.drama[i].title;
+    }
+
+    res = await fetch('/api/loadSciFan');
+    movies = await res.json();
+    console.log(movies);
+
+    for (let i = 0; i < 8; i++) {
+        moviesData.sciFan = movies.SciFan;
+        document.getElementById(`posterSci-fan${i}`).src = moviesData.sciFan[i].posterLink;
+        document.getElementById(`sci-fanTitle${i}`).innerText = moviesData.sciFan[i].title;
     }
 }
 

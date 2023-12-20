@@ -43,12 +43,11 @@
             <div class="dropdown">
                 <li><a href="#" style="text-align: top; color: #FFDFE3;" >More</a></li>
                 <div class="dropdown-content">
-                  <a href="#new ">New movies</a>
+                  <a href="#new">New movies</a>
                   <a href="#Action">Action movies</a>
-                    <a href="#Horror">Horror movies</a>
-                    <a href="#">Action movies</a>
-                    <a href="#">Action movies</a>
-                    <a href="#">Action movies</a>
+                  <a href="#Animation">Animation</a>
+                  <a href="#Drama">Drama Programme</a>
+                  <a href="#Fantasy-SciFi">Sci-Fi Fantasy</a>
                   </div>
             </div>
             <!-- <li><button type="button" class="btn-sn" name="dark_light" onclick="toggleDarkLight()"><i class="fa fa-sun-o" aria-hidden="true"></i></button></li> &nbsp; -->
@@ -182,10 +181,10 @@
                         <!--img---------------------------------------->
                         <div class="movies-img">
                           <div class="quality">New movies</div>
-                          <img src="" id="posterHits0">
+                          <img src="img/loading.jpg" id="posterHits0">
                         </div>
                         <a href="#" id="hitsTitle0">
-                          wish(2023)
+                          Loading...
                         </a>
                       </div>
                     </button>
@@ -196,10 +195,10 @@
                         <!--img---------------------------------------->
                         <div class="movies-img">
                             <div class="quality">New movies</div>
-                            <img src="" id="posterHits1">
+                            <img src="img/loading.jpg" id="posterHits1">
                         </div>
                         <a href="#" id="hitsTitle1">
-                          wish(2023)
+                          Loading...
                         </a>
                       </div>
                     </button>
@@ -210,80 +209,80 @@
                       <!--img---------------------------------------->
                       <div class="movies-img">
                         <div class="quality">New movies</div>
-                        <img src="" id="posterHits2">
+                        <img src="img/loading.jpg" id="posterHits2">
                       </div>
                       <a href="#" id="hitsTitle2">
-                        wish(2023)
+                        Loading...
                       </a>
                         </div>
                       </button>
                     </li>
                     <li class="item-d">
-                      <button id="hits3" onclick="openPopup()" style="border: 0px; background-color: transparent;">
+                      <button id="hits3" onclick="openPopup('hits3')" style="border: 0px; background-color: transparent;">
                         <div class="movies-box">
                           <!--img---------------------------------------->
                           <div class="movies-img">
                             <div class="quality">New movies</div>
-                            <img src="" id="posterHits3">
+                            <img src="img/loading.jpg" id="posterHits3">
                           </div>
                           <a href="#" id="hitsTitle3">
-                            wish(2023)
+                            Loading...
                           </a>
                         </div>
                       </button>
                 </li>
                 <li class="item-e">
-                  <button id="hits4" onclick="openPopup()" style="border: 0px; background-color: transparent;">
+                  <button id="hits4" onclick="openPopup('hits4')" style="border: 0px; background-color: transparent;">
                     <div class="movies-box">
                       <!--img---------------------------------------->
                       <div class="movies-img">
                         <div class="quality">New movies</div>
-                        <img src="" id="posterHits4">
+                        <img src="img/loading.jpg" id="posterHits4">
                       </div>
                       <a href="#" id="hitsTitle4">
-                        wish(2023)
+                        Loading...
                             </a>
                           </div>
                         </button>
                       </li>
                       <li class="item-f">
-                    <button onclick="openPopup()" style="border: 0px; background-color: transparent;">
+                    <button onclick="openPopup('hits5')" style="border: 0px; background-color: transparent;">
                         <div id="hits5" class="movies-box">
                           <!--img---------------------------------------->
                           <div class="movies-img">
                                 <div class="quality">New movies</div>
-                                <img src="" id="posterHits5">
+                                <img src="img/loading.jpg" id="posterHits5">
                             </div>
                             <a href="#" id="hitsTitle5">
-                                wish(2023)
+                                Loading...
                               </a>
                         </div>
                       </button>
                     </li>
                 <li class="item-g">
-                    <button id="hits6" onclick="openPopup()" style="border: 0px; background-color: transparent;">
+                    <button id="hits6" onclick="openPopup('hits6')" style="border: 0px; background-color: transparent;">
                         <div class="movies-box">
                           <!--img---------------------------------------->
                           <div class="movies-img">
                             <div class="quality">New movies</div>
-                            <img src="" id="posterHits6">
+                            <img src="img/loading.jpg" id="posterHits6">
                             </div>
                             <a href="#" id="hitsTitle6">
-                              wish(2023)
+                              Loading...
                             </a>
                           </div>
                         </button>
                 </li>
                 <li class="item-h">
-                  <button id="hits7" onclick="openPopup()" style="border: 0px; background-color: transparent;">
+                  <button id="hits7" onclick="openPopup('hits7')" style="border: 0px; background-color: transparent;">
                         <div class="movies-box">
                           <!--img---------------------------------------->
                           <div class="movies-img">
                             <div class="quality">New movies</div>
-                            <img src="" id="posterHits7">
+                            <img src="img/loading.jpg" id="posterHits7">
                           </div>
                           <a href="#" id="hitsTitle7">
-                            wish(2023)
+                            Loading...
                           </a>
                         </div>
                       </button>
@@ -299,10 +298,10 @@
                 <div class="movies-box">
                   <!--img---------------------------------------->
                   <div class="movies-img">
-                    <img src="images/4KINGS-2.jpg" id="action0" onclick="openPopup('action0')">
+                    <img src="img/loading.jpg" id="posterAction0" onclick="openPopup('action0')">
                   </div>
-                  <a href="#">
-                    wish(2023)
+                  <a href="#" id="actionTitle0">
+                    Loading...
                   </a>
                 </div>
               </li>
@@ -310,10 +309,10 @@
                 <div class="movies-box">
                   <!--img---------------------------------------->
                   <div class="movies-img">
-                    <img src="images/4KINGS-2.jpg">
+                    <img src="img/loading.jpg" id="posterAction1" onclick="openPopup('action1')">
                   </div>
-                  <a href="#">
-                    wish(2023)
+                  <a href="#" id="actionTitle1">
+                    Loading...
                   </a>
                 </div>
                 </li>
@@ -321,10 +320,10 @@
                     <div class="movies-box">
                         <!--img---------------------------------------->
                         <div class="movies-img">
-                          <img src="images/4KINGS-2.jpg">
+                          <img src="img/loading.jpg" id="posterAction2" onclick="openPopup('action2')">
                         </div>
-                        <a href="#">
-                          wish(2023)
+                        <a href="#" id="actionTitle2">
+                          Loading...
                         </a>
                       </div>
                 </li>
@@ -332,10 +331,10 @@
                   <div class="movies-box">
                     <!--img---------------------------------------->
                     <div class="movies-img">
-                      <img src="images/4KINGS-2.jpg">
+                      <img src="img/loading.jpg" id="posterAction3" onclick="openPopup('action3')">
                     </div>
-                    <a href="#">
-                      wish(2023)
+                    <a href="#" id="actionTitle3">
+                      Loading...
                     </a>
                     </div>
                   </li>
@@ -343,10 +342,10 @@
                     <div class="movies-box">
                       <!--img---------------------------------------->
                         <div class="movies-img">
-                          <img src="images/4KINGS-2.jpg">
+                          <img src="img/loading.jpg" id="posterAction4" onclick="openPopup('action4')">
                         </div>
-                        <a href="#">
-                          wish(2023)
+                        <a href="#" id="actionTitle4">
+                          Loading...
                         </a>
                       </div>
                     </li>
@@ -354,10 +353,10 @@
                   <div class="movies-box">
                     <!--img---------------------------------------->
                     <div class="movies-img">
-                      <img src="images/4KINGS-2.jpg">
+                      <img src="img/loading.jpg" id="posterAction5" onclick="openPopup('action5')">
                     </div>
-                    <a href="#">
-                      wish(2023)
+                    <a href="#" id="actionTitle5">
+                      Loading...
                     </a>
                   </div>
                 </li>
@@ -365,10 +364,10 @@
                     <div class="movies-box">
                       <!--img---------------------------------------->
                         <div class="movies-img">
-                          <img src="images/4KINGS-2.jpg">
+                          <img src="img/loading.jpg" id="posterAction6" onclick="openPopup('action6')">
                         </div>
-                        <a href="#">
-                          wish(2023)
+                        <a href="#" id="actionTitle6">
+                          Loading...
                         </a>
                       </div>
                     </li>
@@ -376,17 +375,17 @@
                       <div class="movies-box">
                         <!--img---------------------------------------->
                         <div class="movies-img">
-                          <img src="images/4KINGS-2.jpg">
+                          <img src="img/loading.jpg" id="posterAction7" onclick="openPopup('action7')">
                         </div>
-                        <a href="#">
-                            wish(2023)
+                        <a href="#" id="actionTitle7">
+                            Loading...
                           </a>
                     </div>
                 </li>
             </ul>
           </section>
         <section>
-            <h1 class="showcase-heading" id="Horror">Horror movie </h1>
+            <h1 class="showcase-heading" id="Animation">Animations</h1>
             <!--showcase-box----------------------------------->
             <ul id="autoWidth" class="cs-hidden">
                 <!--box-1-------------------------------------->
@@ -394,10 +393,10 @@
                   <div class="movies-box">
                     <!--img---------------------------------------->
                     <div class="movies-img">
-                      <img src="images/4KINGS-2.jpg">
+                      <img src="img/loading.jpg" id="posterAnimation0" onclick="openPopup('animation0')">
                     </div>
-                    <a href="#">
-                      wish(2023)
+                    <a href="#" id="animationTitle0">
+                      Loading...
                     </a>
                   </div>
                 </li>
@@ -405,10 +404,10 @@
                   <div class="movies-box">
                     <!--img---------------------------------------->
                     <div class="movies-img">
-                      <img src="images/4KINGS-2.jpg">
+                      <img src="img/loading.jpg" id="posterAnimation1" onclick="openPopup('animation1')">
                     </div>
-                    <a href="#">
-                      wish(2023)
+                    <a href="#" id="animationTitle1">
+                      Loading...
                     </a>
                   </div>
                 </li>
@@ -416,10 +415,10 @@
                   <div class="movies-box">
                         <!--img---------------------------------------->
                         <div class="movies-img">
-                          <img src="images/4KINGS-2.jpg">
+                          <img src="img/loading.jpg" id="posterAnimation2" onclick="openPopup('animation2')">
                         </div>
-                        <a href="#">
-                          wish(2023)
+                        <a href="#" id="animationTitle2">
+                          Loading...
                         </a>
                     </div>
                   </li>
@@ -427,10 +426,10 @@
                     <div class="movies-box">
                       <!--img---------------------------------------->
                       <div class="movies-img">
-                            <img src="images/4KINGS-2.jpg">
+                            <img src="img/loading.jpg" id="posterAnimation3" onclick="openPopup('animation3')">
                           </div>
-                          <a href="#">
-                            wish(2023)
+                          <a href="#" id="animationTitle3">
+                            Loading...
                           </a>
                         </div>
                       </li>
@@ -438,10 +437,10 @@
                         <div class="movies-box">
                           <!--img---------------------------------------->
                           <div class="movies-img">
-                            <img src="images/4KINGS-2.jpg">
+                            <img src="img/loading.jpg" id="posterAnimation4" onclick="openPopup('animation4')"> 
                           </div>
-                          <a href="#">
-                            wish(2023)
+                          <a href="#" id="animationTitle4">
+                            Loading...
                           </a>
                         </div>
                 </li>
@@ -449,10 +448,10 @@
                   <div class="movies-box">
                     <!--img---------------------------------------->
                         <div class="movies-img">
-                          <img src="images/4KINGS-2.jpg">
+                          <img src="img/loading.jpg" id="posterAnimation5" onclick="openPopup('animation5')">
                         </div>
-                        <a href="#">
-                          wish(2023)
+                        <a href="#" id="animationTitle5">
+                          Loading...
                         </a>
                       </div>
                     </li>
@@ -460,10 +459,10 @@
                       <div class="movies-box">
                         <!--img---------------------------------------->
                         <div class="movies-img">
-                            <img src="images/4KINGS-2.jpg">
+                            <img src="img/loading.jpg" id="posterAnimation6" onclick="openPopup('animation6')">
                           </div>
-                          <a href="#">
-                            wish(2023)
+                          <a href="#" id="animationTitle6">
+                            Loading...
                           </a>
                     </div>
                 </li>
@@ -471,15 +470,205 @@
                   <div class="movies-box">
                     <!--img---------------------------------------->
                     <div class="movies-img">
-                      <img src="images/4KINGS-2.jpg">
+                      <img src="img/loading.jpg" id="posterAnimation7" onclick="openPopup('animation7')">
                     </div>
-                    <a href="#">
-                            wish(2023)
+                    <a href="#" id="animationTitle7">
+                            Loading...
                           </a>
                         </div>
                       </li>
                     </ul>
-                  </section>
+        </section>
+        <section>
+            <h1 class="showcase-heading" id="Drama">Drama Programme</h1>
+            <!--showcase-box----------------------------------->
+            <ul id="autoWidth" class="cs-hidden">
+                <!--box-1-------------------------------------->
+                <li class="item-a">
+                  <div class="movies-box">
+                    <!--img---------------------------------------->
+                    <div class="movies-img">
+                      <img src="img/loading.jpg" id="posterDrama0" onclick="openPopup('drama0')">
+                    </div>
+                    <a href="#" id="dramaTitle0">
+                      Loading...
+                    </a>
+                  </div>
+                </li>
+                <li class="item-b">
+                  <div class="movies-box">
+                    <!--img---------------------------------------->
+                    <div class="movies-img">
+                      <img src="img/loading.jpg" id="posterDrama1" onclick="openPopup('drama1')">
+                    </div>
+                    <a href="#" id="dramaTitle1">
+                      Loading...
+                    </a>
+                  </div>
+                </li>
+                <li class="item-c">
+                  <div class="movies-box">
+                        <!--img---------------------------------------->
+                        <div class="movies-img">
+                          <img src="img/loading.jpg" id="posterDrama2" onclick="openPopup('drama2')">
+                        </div>
+                        <a href="#" id="dramaTitle2">
+                          Loading...
+                        </a>
+                    </div>
+                  </li>
+                  <li class="item-d">
+                    <div class="movies-box">
+                      <!--img---------------------------------------->
+                      <div class="movies-img">
+                            <img src="img/loading.jpg" id="posterDrama3" onclick="openPopup('drama3')">
+                          </div>
+                          <a href="#" id="dramaTitle3">
+                            Loading...
+                          </a>
+                        </div>
+                      </li>
+                      <li class="item-e">
+                        <div class="movies-box">
+                          <!--img---------------------------------------->
+                          <div class="movies-img">
+                            <img src="img/loading.jpg" id="posterDrama4" onclick="openPopup('drama4')">
+                          </div>
+                          <a href="#" id="dramaTitle4">
+                            Loading...
+                          </a>
+                        </div>
+                </li>
+                <li class="item-e">
+                  <div class="movies-box">
+                    <!--img---------------------------------------->
+                        <div class="movies-img">
+                          <img src="img/loading.jpg" id="posterDrama5" onclick="openPopup('drama5')">
+                        </div>
+                        <a href="#" id="dramaTitle5">
+                          Loading...
+                        </a>
+                      </div>
+                    </li>
+                    <li class="item-e">
+                      <div class="movies-box">
+                        <!--img---------------------------------------->
+                        <div class="movies-img">
+                            <img src="img/loading.jpg" id="posterDrama6" onclick="openPopup('drama6')">
+                          </div>
+                          <a href="#" id="dramaTitle6">
+                            Loading...
+                          </a>
+                    </div>
+                </li>
+                <li class="item-e">
+                  <div class="movies-box">
+                    <!--img---------------------------------------->
+                    <div class="movies-img">
+                      <img src="img/loading.jpg" id="posterDrama7" onclick="openPopup('drama7')">
+                    </div>
+                    <a href="#" id="dramaTitle7">
+                            Loading...
+                          </a>
+                        </div>
+                      </li>
+                    </ul>
+        </section>
+        <section>
+          <h1 class="showcase-heading" id="Fantasy-SciFi">Sci-Fi Fantasy</h1>
+          <!--showcase-box----------------------------------->
+          <ul id="autoWidth" class="cs-hidden">
+              <!--box-1-------------------------------------->
+              <li class="item-a">
+                <div class="movies-box">
+                  <!--img---------------------------------------->
+                  <div class="movies-img">
+                    <img src="img/loading.jpg" id="posterSci-fan0" onclick="openPopup('sciFan0')">
+                  </div>
+                  <a href="#" id="sci-fanTitle0">
+                    Loading...
+                  </a>
+                </div>
+              </li>
+              <li class="item-b">
+                <div class="movies-box">
+                  <!--img---------------------------------------->
+                  <div class="movies-img">
+                    <img src="img/loading.jpg" id="posterSci-fan1" onclick="openPopup('sciFan1')">
+                  </div>
+                  <a href="#" id="sci-fanTitle1">
+                    Loading...
+                  </a>
+                </div>
+              </li>
+              <li class="item-c">
+                <div class="movies-box">
+                      <!--img---------------------------------------->
+                      <div class="movies-img">
+                        <img src="img/loading.jpg" id="posterSci-fan2" onclick="openPopup('sciFan2')">
+                      </div>
+                      <a href="#" id="sci-fanTitle2">
+                        Loading...
+                      </a>
+                  </div>
+                </li>
+                <li class="item-d">
+                  <div class="movies-box">
+                    <!--img---------------------------------------->
+                    <div class="movies-img">
+                          <img src="img/loading.jpg" id="posterSci-fan3" onclick="openPopup('sciFan3')">
+                        </div>
+                        <a href="#" id="sci-fanTitle3">
+                          Loading...
+                        </a>
+                      </div>
+                    </li>
+                    <li class="item-e">
+                      <div class="movies-box">
+                        <!--img---------------------------------------->
+                        <div class="movies-img">
+                          <img src="img/loading.jpg" id="posterSci-fan4" onclick="openPopup('sciFan4')">
+                        </div>
+                        <a href="#" id="sci-fanTitle4">
+                          Loading...
+                        </a>
+                      </div>
+              </li>
+              <li class="item-e">
+                <div class="movies-box">
+                  <!--img---------------------------------------->
+                      <div class="movies-img">
+                        <img src="img/loading.jpg" id="posterSci-fan5" onclick="openPopup('sciFan5')">
+                      </div>
+                      <a href="#" id="sci-fanTitle5">
+                        Loading...
+                      </a>
+                    </div>
+                  </li>
+                  <li class="item-e">
+                    <div class="movies-box">
+                      <!--img---------------------------------------->
+                      <div class="movies-img">
+                          <img src="img/loading.jpg" id="posterSci-fan6" onclick="openPopup('sciFan6')">
+                        </div>
+                        <a href="#" id="sci-fanTitle6">
+                          Loading...
+                        </a>
+                  </div>
+              </li>
+              <li class="item-e">
+                <div class="movies-box">
+                  <!--img---------------------------------------->
+                  <div class="movies-img">
+                    <img src="img/loading.jpg" id="posterSci-fan7" onclick="openPopup('sciFan7')">
+                  </div>
+                  <a href="#" id="sci-fanTitle7">
+                          Loading...
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+      </section>
     </div>
     <!--footer------------------------------------->
     <footer>
@@ -498,7 +687,7 @@
       $(document).ready(function () {
         $('#autoWidth,#autoWidth2').lightSlider({
                 autoWidth: true,
-                loop: true,
+                loop: false,
                 onSliderLoad: function () {
                   $('#autoWidth,#autoWidth2').removeClass('cS-hidden');
                 }

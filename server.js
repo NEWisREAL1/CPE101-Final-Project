@@ -169,20 +169,19 @@ app.post('/api/filter', async (req, res) => {
   }
 });
 
-app.get('/api/loadMovies', async (req, res) => {
+app.get('/api/loadHits', async (req, res) => {
   try {
-    console.log("got starting page request...");
-    const movies = {
-      "hits": [],
-      "action": []
+    console.log("Loading Hits...");
+    const movieHits = {
+      "hits": []
     };
     const data = await getData();
     console.log('Movies database fetched successfully.');
-    const hitsMovieList = [];
 
     for (let i = 0; i < data.movies.length; i++) {
       const movie = data.movies[i];
 
+      
       if (parseInt(movie.year) >= 2023) {
         const omdbInfo = await getOMDB(movie.imdbID);
         movie.language = omdbInfo.Language.split(", ");
@@ -194,23 +193,195 @@ app.get('/api/loadMovies', async (req, res) => {
         movie.ratings = omdbInfo.Ratings;
         movie.meta = omdbInfo.Metascore;
         movie.imdbVotes = omdbInfo.imdbVotes;
-        hitsMovieList.push(movie)
+        movieHits.hits.push(movie);
       }
 
-      if (hitsMovieList.length >= 8) {
-        movies.hits = hitsMovieList;
+      let loadDone = movieHits.hits.length >= 8;
+
+      if (loadDone) {
         break;
       }
     }
 
-    res.json(movies)
+    res.json(movieHits)
   }
   catch (err) {
     console.log('An error occurred.');
     console.error(err);
     res.status(500).json({ error: 'Internal Server Error' });
   }
-  
+});
+
+app.get('/api/loadAction', async (req, res) => {
+  try {
+    console.log("Loading Actions...");
+    const movieAction = {
+      "Action": []
+    };
+    const data = await getData();
+    console.log('Movies database fetched successfully.');
+
+    for (let i = 0; i < data.movies.length; i++) {
+      const movie = data.movies[i];
+
+      
+      if (movie.genres.includes('Action')) {
+        const omdbInfo = await getOMDB(movie.imdbID);
+        movie.language = omdbInfo.Language.split(", ");
+        const runtime = parseInt(omdbInfo.Runtime);
+        movie.runtime = `${runtime} min`;
+        movie.rated = omdbInfo.Rated;
+        movie.plot = omdbInfo.Plot;
+        movie.posterLink = omdbInfo.Poster;
+        movie.ratings = omdbInfo.Ratings;
+        movie.meta = omdbInfo.Metascore;
+        movie.imdbVotes = omdbInfo.imdbVotes;
+        movieAction.Action.push(movie);
+      }
+
+      let loadDone = movieAction.Action.length >= 8;
+
+      if (loadDone) {
+        break;
+      }
+    }
+
+    res.json(movieAction);
+  }
+  catch (err) {
+    console.log('An error occurred.');
+    console.error(err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.get('/api/loadAnimation', async (req, res) => {
+  try {
+    console.log("Loading Animations...");
+    const movieAnimation = {
+      "Animation": []
+    };
+    const data = await getData();
+    console.log('Movies database fetched successfully.');
+
+    for (let i = 0; i < data.movies.length; i++) {
+      const movie = data.movies[i];
+
+      
+      if (movie.genres.includes('Animation')) {
+        const omdbInfo = await getOMDB(movie.imdbID);
+        movie.language = omdbInfo.Language.split(", ");
+        const runtime = parseInt(omdbInfo.Runtime);
+        movie.runtime = `${runtime} min`;
+        movie.rated = omdbInfo.Rated;
+        movie.plot = omdbInfo.Plot;
+        movie.posterLink = omdbInfo.Poster;
+        movie.ratings = omdbInfo.Ratings;
+        movie.meta = omdbInfo.Metascore;
+        movie.imdbVotes = omdbInfo.imdbVotes;
+        movieAnimation.Animation.push(movie);
+      }
+
+      let loadDone = movieAnimation.Animation.length >= 8;
+
+      if (loadDone) {
+        break;
+      }
+    }
+
+    res.json(movieAnimation);
+  }
+  catch (err) {
+    console.log('An error occurred.');
+    console.error(err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.get('/api/loadDrama', async (req, res) => {
+  try {
+    console.log("Loading Dramas...");
+    const movieDrama = {
+      "Drama": []
+    };
+    const data = await getData();
+    console.log('Movies database fetched successfully.');
+
+    for (let i = 0; i < data.movies.length; i++) {
+      const movie = data.movies[i];
+
+      
+      if (movie.genres.includes('Drama')) {
+        const omdbInfo = await getOMDB(movie.imdbID);
+        movie.language = omdbInfo.Language.split(", ");
+        const runtime = parseInt(omdbInfo.Runtime);
+        movie.runtime = `${runtime} min`;
+        movie.rated = omdbInfo.Rated;
+        movie.plot = omdbInfo.Plot;
+        movie.posterLink = omdbInfo.Poster;
+        movie.ratings = omdbInfo.Ratings;
+        movie.meta = omdbInfo.Metascore;
+        movie.imdbVotes = omdbInfo.imdbVotes;
+        movieDrama.Drama.push(movie);
+      }
+
+      let loadDone = movieDrama.Drama.length >= 8;
+
+      if (loadDone) {
+        break;
+      }
+    }
+
+    res.json(movieDrama);
+  }
+  catch (err) {
+    console.log('An error occurred.');
+    console.error(err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.get('/api/loadSciFan', async (req, res) => {
+  try {
+    console.log("Loading Sci-Fan...");
+    const movieSciFan = {
+      "SciFan": []
+    };
+    const data = await getData();
+    console.log('Movies database fetched successfully.');
+
+    for (let i = 0; i < data.movies.length; i++) {
+      const movie = data.movies[i];
+
+      
+      if (movie.genres.includes('Sci-Fi') || movie.genres.includes('Fantasy')) {
+        const omdbInfo = await getOMDB(movie.imdbID);
+        movie.language = omdbInfo.Language.split(", ");
+        const runtime = parseInt(omdbInfo.Runtime);
+        movie.runtime = `${runtime} min`;
+        movie.rated = omdbInfo.Rated;
+        movie.plot = omdbInfo.Plot;
+        movie.posterLink = omdbInfo.Poster;
+        movie.ratings = omdbInfo.Ratings;
+        movie.meta = omdbInfo.Metascore;
+        movie.imdbVotes = omdbInfo.imdbVotes;
+        movieSciFan.SciFan.push(movie);
+      }
+
+      let loadDone = movieSciFan.SciFan.length >= 8;
+
+      if (loadDone) {
+        break;
+      }
+    }
+
+    res.json(movieSciFan);
+  }
+  catch (err) {
+    console.log('An error occurred.');
+    console.error(err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
 app.get('/api/search/:keyword', async (req, res) => {
