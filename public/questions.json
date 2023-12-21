@@ -23,10 +23,10 @@
         {
             "qText": "3. What duration of a movie are you comfortable with?",
             "choices": [
-                { "cText": "Less than a hour.", "value": [null, 60] },
-                { "cText": "Between 1 - 2 hours", "value": [60, 120] },
+                { "cText": "Less than 1.5 hours.", "value": [null, 90] },
+                { "cText": "Between 1.5 - 2 hours", "value": [90, 120] },
                 { "cText": "Between 2 - 3 hours", "value": [120, 180] },
-                { "cText": "More that 3 hours", "value": [180, null] },
+                { "cText": "More than 3 hours", "value": [180, null] },
                 { "cText": "Doesn't matter.", "value": [null, null] }
             ]
         },
@@ -34,21 +34,18 @@
             "qText": "3. What duration of a episode are you comfortable with?",
             "choices": [
                 { "cText": "Less than 30 minutes.", "value": [null, 30] },
-                { "cText": "more than 30 minutes", "value": [30, null] },
+                { "cText": "More than 30 minutes", "value": [30, null] },
                 { "cText": "Doesn't matter.", "value": [null, null] }
             ]
         },
         {
-            "qText": "4. Are you open to explore movies in different languages?",
+            "qText": "4. Is the age-appropriateness rating of the movie important to you?",
             "choices": [
-                { "cText": "English.", "value": "English" },
-                { "cText": "France.", "value": "France" },
-                { "cText": "Thai.", "value": "Thai" },
-                { "cText": "Cantonese / Mandarin Chinese.", "value": "Chinese" },
-                { "cText": "Korea.", "value": "Korean" },
-                { "cText": "Japanese.", "value": "Japanese" },
-                { "cText": "Hindi.", "value": "Hindi" },
-                { "cText": "Any language is fine.", "value": null }
+                { "cText": "G-Rated (All Ages Admitted).", "value": ["G"] },
+                { "cText": "PG-Rated (Some material may not suitable for children).", "value": ["G","PG"] },
+                { "cText": "PG-13-Rated (Some material may be inappropriate for children under 13).", "value": ["G","PG","PG-13"] },
+                { "cText": "R-Rated (Under 17 requires accompanying parent or adult guardian).", "value": ["G","PG","PG-13", "R"] },
+                { "cText": "It doesn't matter..", "value": null }
             ]
         },
         {
@@ -59,6 +56,21 @@
                 { "cText": "1990s.", "value": [1990, 1999] },
                 { "cText": "After 2000.", "value": [2000, null] },
                 { "cText": "Any year is fine.", "value": [null, null] }
+            ]
+        },
+        {
+            "qText": "6. Choose the movie you liked the most.",
+            "choices": [
+                { "cTitle": "Avengers", "id": ["tt4154756", "tt4154796", "tt2395427", "tt0848228"], "value": ["Action", "Adventure", "Comedy"], "link": "https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_SX300.jpg" },
+                { "cTitle": "Despicable Me", "id": ["tt1323594"], "value": ["Animation", "Adventure", "Comedy"], "link": "https://m.media-amazon.com/images/M/MV5BMTY3NjY0MTQ0Nl5BMl5BanBnXkFtZTcwMzQ2MTc0Mw@@._V1_SX300.jpg" },
+                { "cTitle": "La La Land", "id": ["tt3783958"], "value": ["Drama", "Romance", "Musical"], "link": "https://m.media-amazon.com/images/M/MV5BMzUzNDM2NzM2MV5BMl5BanBnXkFtZTgwNTM3NTg4OTE@._V1_SX300.jpg" },
+                { "cTitle": "Back to the Future", "id": ["tt0088763", "tt0096874", "tt0099088"], "value": ["Comedy", "Sci-Fi", "Adventure"], "link": "https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg" },
+                { "cTitle": "Avatar", "id": ["tt0499549", "tt1630029"], "value": ["Fantasy", "Action", "Adventure"], "link": "https://m.media-amazon.com/images/M/MV5BZDA0OGQxNTItMDZkMC00N2UyLTg3MzMtYTJmNjg3Nzk5MzRiXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_SX300.jpg" },
+                { "cTitle": "The Lion King", "id": ["tt6105098", "tt0110357"], "value": ["Animation", "Adventure", "Drama"], "link": "https://m.media-amazon.com/images/M/MV5BYTYxNGMyZTYtMjE3MS00MzNjLWFjNmYtMDk3N2FmM2JiM2M1XkEyXkFqcGdeQXVyNjY5NDU4NzI@._V1_SX300.jpg" },
+                { "cTitle": "Forrest Gump", "id": ["tt0109830"], "value": ["Drama", "Comedy", "Romance"], "link": "https://m.media-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg" },
+                { "cTitle": "Inception", "id": ["tt1375666"], "value": ["Sci-Fi", "Action", "Adventure"], "link": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg" },
+                { "cTitle": "Joker", "id": ["tt7286456"], "value": ["Crime", "Thriller", "Drama"], "link": "https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg" },
+                { "cTitle": "Friends", "id": ["tt0108778"], "value": ["Romance", "Comedy"], "link": "https://m.media-amazon.com/images/M/MV5BNDVkYjU0MzctMWRmZi00NTkxLTgwZWEtOWVhYjZlYjllYmU4XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg" }
             ]
         }
     ]

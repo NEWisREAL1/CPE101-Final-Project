@@ -3,9 +3,10 @@ const data = {
     "type": null,
     "minRunTime": null,
     "maxRunTime": null,
-    "language": null,
+    "rated": null,
     "startYear": null,
-    "endYear": null
+    "endYear": null,
+    "alreadyWatched": null
 };
 
 const moviesData = {
@@ -47,44 +48,44 @@ function loadPopupData(id) {
     }
 
     document.getElementById('popupPoster').src = movie.posterLink;
-        document.getElementById('popupType').innerText = movie.type;
-        document.getElementById('popupTitle').innerText = movie.title;
-        document.getElementById('popupYear').innerText = movie.year;
-        document.getElementById('popupRated').innerText = movie.rated;
-        document.getElementById('popupRuntime').innerText = movie.runtime;
+    document.getElementById('popupType').innerText = movie.type;
+    document.getElementById('popupTitle').innerText = movie.title;
+    document.getElementById('popupYear').innerText = movie.year;
+    document.getElementById('popupRated').innerText = movie.rated;
+    document.getElementById('popupRuntime').innerText = movie.runtime;
 
-        document.getElementById(`popupGenre0`).innerText = '';
-        document.getElementById(`popupGenre1`).innerText = '';
-        document.getElementById(`popupGenre2`).innerText = '';
+    document.getElementById(`popupGenre0`).innerText = '';
+    document.getElementById(`popupGenre1`).innerText = '';
+    document.getElementById(`popupGenre2`).innerText = '';
 
-        if (typeof(movie.genres) == 'string') {
-            document.getElementById('popupGenre0').innerText = movie.genres;
-        }
-        else {
-            for (let i = 0; i < movie.genres.length; i++) {
-                if (i == movie.genres.length - 1) {
-                    document.getElementById(`popupGenre${i}`).innerText = movie.genres[i];
-                }
-                else {
-                    document.getElementById(`popupGenre${i}`).innerText = movie.genres[i] + ' •';
-                }
+    if (typeof(movie.genres) == 'string') {
+        document.getElementById('popupGenre0').innerText = movie.genres;
+    }
+    else {
+        for (let i = 0; i < movie.genres.length; i++) {
+            if (i == movie.genres.length - 1) {
+                document.getElementById(`popupGenre${i}`).innerText = movie.genres[i];
+            }
+            else {
+                document.getElementById(`popupGenre${i}`).innerText = movie.genres[i] + ' •';
             }
         }
-        
-        document.getElementById('popupPlot').innerText = movie.plot;
-        if (movie.ratings.length >= 1) {
-            document.getElementById('popupImdbRate').innerText = movie.ratings[0].Value;
-        }
-        else {
-            document.getElementById('popupImdbRate').innerText = 'unavailable';
-        }
-        if (movie.ratings.length >= 2) {
-            document.getElementById('popupTomatoRate').innerText = movie.ratings[1].Value;
-        }
-        else {
-            document.getElementById('popupTomatoRate').innerText = 'unavailable';
-        }
-        document.getElementById('popupMeta').innerText = movie.meta;
+    }
+    
+    document.getElementById('popupPlot').innerText = movie.plot;
+    if (movie.ratings.length >= 1) {
+        document.getElementById('popupImdbRate').innerText = movie.ratings[0].Value;
+    }
+    else {
+        document.getElementById('popupImdbRate').innerText = 'unavailable';
+    }
+    if (movie.ratings.length >= 2) {
+        document.getElementById('popupTomatoRate').innerText = movie.ratings[1].Value;
+    }
+    else {
+        document.getElementById('popupTomatoRate').innerText = 'unavailable';
+    }
+    document.getElementById('popupMeta').innerText = movie.meta;
 }
 
 let values = [];
@@ -92,8 +93,9 @@ let values = [];
 async function startQA(index) {
     document.getElementById('hero').style.display = 'none';
     document.getElementById('questioning').style.display = 'block';
-    if (index == 6) {
+    if (index == 7) {
         document.getElementById("question-text").style.display = 'none';
+        document.getElementById('result-warp-wrap2').style.display = 'none';
         filterMovies();
     }
     else {
@@ -101,16 +103,49 @@ async function startQA(index) {
         const questions = await questionRes.json();
         const question = questions.questions[index];
         console.log(question);
-    
-        //document.getElementById("start").style.display = 'none';
-        document.getElementById("question-text").textContent = question.qText;
-        values = [];
-        for (let i = 0; i < question.choices.length; i++) {
-            const choice = document.getElementById(`choice${i}`);
+        
+        if (index == 6) {
+            document.getElementById("question-text").textContent = question.qText;
+            values = [];
+            const ranNum = [];
+            while (ranNum.length < 5) {
+                const num = Math.floor(Math.random() * 9);
+                if (!ranNum.includes(num)) {
+                    ranNum.push(num);
+                }
+            }
+            for (let i = 0; i < 5; i++) {
+                const poster = document.getElementById(`posterIMG-${i+1}`);
+                const title = document.getElementById(`movieData-${i+1}`);
+                document.getElementById('result-warp-wrap2').style.display = 'flex';
+                poster.style.display = 'block'
+                title.style.display = 'block';
+
+                poster.src = question.choices[ranNum[i]].link;
+                title.innerText = question.choices[ranNum[i]].cTitle;
+
+                values[i] = { "value": question.choices[ranNum[i]].value, "alw": question.choices[ranNum[i]].id };
+                poster.onclick = function() { nextQA(index, values[i]) };
+                title.onclick = function() { nextQA(index, values[i]) };
+            }
+
+            const choice = document.getElementById(`choice0`);
             choice.style.display = 'block';
-            choice.textContent = question.choices[i].cText;
-            values[i] = question.choices[i].value;
-            choice.onclick = function() { nextQA(index, values[i]) };
+            choice.innerText = "I've never seen these movie."
+            values[5] = null;
+            choice.onclick = function() { nextQA(index, values[5]) };
+        }
+        else {
+            //document.getElementById("start").style.display = 'none';
+            document.getElementById("question-text").textContent = question.qText;
+            values = [];
+            for (let i = 0; i < question.choices.length; i++) {
+                const choice = document.getElementById(`choice${i}`);
+                choice.style.display = 'block';
+                choice.textContent = question.choices[i].cText;
+                values[i] = question.choices[i].value;
+                choice.onclick = function() { nextQA(index, values[i]) };
+            }
         }
     }
 }
@@ -127,7 +162,7 @@ function nextQA(index, value) {
             break;
         case 1:
             data.type = value;
-            if (data.type == 'movie') {
+            if (data.type == 'movie' || data.type == null) {
                 startQA(2);
             }
             if (data.type == 'tvSeries') {
@@ -145,13 +180,31 @@ function nextQA(index, value) {
             startQA(4);
             break;
         case 4:
-            data.language = value;
+            data.rated = value;
             startQA(5);
             break;
         case 5:
             data.startYear = value[0];
             data.endYear = value[1];
             startQA(6);
+            break;
+        case 6:
+            if (value != null && data.genres != null) {
+                for (let genre of value.value) {
+                    if (!data.genres.includes(genre)) {
+                        data.genres.push(genre);
+                    }
+                }
+            }
+            else if (data.genres == null) {
+                if (value != null) {
+                    data.genres = value.value;
+                }
+            }
+            if (value != null) {
+                data.alreadyWatched = value.alw;
+            }
+            startQA(7);
             break;
     }
 
@@ -256,8 +309,19 @@ async function searchMovies() {
         document.getElementById('keywordFail').innerText = `"${keyword}"`;
     }
     moviesData.search = results;
+    let last = 0;
     for (let i = 0; i < results.length - 1; i++) {
-        document.getElementById(`posterSearch${i}`).src = results[i].posterLink;
+        if (results[i].posterLink == "N/A") {
+            document.getElementById(`posterSearch${i}`).src = "img/notfound_placeholder.svg";
+        }
+        else {
+            document.getElementById(`posterSearch${i}`).src = results[i].posterLink;
+        }
         document.getElementById(`SearchTitle${i}`).innerText = results[i].title;
+        last = i;
+    }
+    for (let i = last + 1; i < 9; i++) {
+        document.getElementById(`posterSearch${i}`).style.display = 'none';
+        document.getElementById(`SearchTitle${i}`).style.display = 'none';
     }
 }

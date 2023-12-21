@@ -102,16 +102,16 @@ app.post('/api/filter', async (req, res) => {
 
       const omdbInfo = await getOMDB(movie.imdbID);
       const runtime = parseInt(omdbInfo.Runtime);
-      const langs = omdbInfo.Language.split(", ");
+      const rated = omdbInfo.Rated;
       if (omdbInfo) {
         
-        // --- Lang filter --- //
+        // --- Rated filter --- //
         if (legitMovie) {
-          if (langs.includes('none')) {
+          if (rated.includes('none')) {
             legitMovie = 0;
           }
-          else if (filters.language) {
-            if (!langs.includes(filters.language)) {
+          else if (filters.rated) {
+            if (!filters.rated.includes(rated)) {
               legitMovie = 0;
             }
           }
@@ -141,11 +141,19 @@ app.post('/api/filter', async (req, res) => {
         console.log("OMDb fetch fail.");
       }
 
+      // --- Already Watched Filter --- //
+      if (legitMovie) {
+        if (filters.alreadyWatched != null) {
+          if (filters.alreadyWatched.includes(movie.imdbID)) {
+            legitMovie = 0;
+          }
+        }
+      }
 
       if (legitMovie) {
-        movie.language = langs;
+        movie.language = omdbInfo.Language.split(", ");;
         movie.runtime = `${runtime} min`;
-        movie.rated = omdbInfo.Rated;
+        movie.rated = rated;
         movie.plot = omdbInfo.Plot;
         movie.posterLink = omdbInfo.Poster;
         movie.ratings = omdbInfo.Ratings;
@@ -153,7 +161,7 @@ app.post('/api/filter', async (req, res) => {
         movie.imdbVotes = omdbInfo.imdbVotes;
         movieList.push(movie);
         console.log(`Movie founded, count ${movieList.length}`);
-        i += Math.floor(Math.random() * 9);
+        i += Math.floor(Math.random() * 20);
       }
       else {
         console.log(`not legit ${i}, ${movie.title}`);

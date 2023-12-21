@@ -10,6 +10,8 @@
     scroll-behavior: smooth;
 }
 
+
+
 .questioning {
     min-height: 100vh;
     padding-top: 5rem;
@@ -37,7 +39,7 @@
 
 .btn-sn{
     padding: 0px 10px;
-    background: #fff;
+    /* background: #fff; */
     border: 0;
     outline: none;
     cursor: pointer;
@@ -243,6 +245,20 @@ body.dark-mode {
     .popup {
         background-color: rgb(83, 83, 83);
         color: #FFDFE3;
+    }
+
+    /* background: #fff; */
+    .menu a:hover{
+        background-color: rgb(83, 83, 83);
+    }
+    .dropdown-content a{
+        background-color: rgb(83, 83, 83);
+        color: #FFDFE3;
+    }
+
+    .dropdown-content a:hover{
+        background-color: rgb(83, 83, 83);
+        color: white;
     }
 
     #question-text {
@@ -567,8 +583,8 @@ nav .menu-btn{
 }
 
 .resultPoster {
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
     object-fit: cover;
 }
 
@@ -585,6 +601,12 @@ nav .menu-btn{
     padding: 1rem;
     justify-content: space-around; /* Adjust as needed */
     align-items: stretch; /* Adjust as needed */
+}
+#result-warp-wrap2 {
+    padding: 1rem;
+    justify-content: space-around; /* Adjust as needed */
+    align-items: stretch; /* Adjust as needed */
+    margin-bottom: 0.5rem;
 }
 
 .search-result {
@@ -625,28 +647,142 @@ nav .menu-btn{
         height: 70px;
         padding: 0px 10px;
     }
-    nav .menu{
+    .dark-mode nav .menu{
         display: none;
         position: absolute;
-        top: 65px;
-        left: 0px;
-        background: #FFDFE3;
-        border-bottom: 4px solid #242424;
-        width: 100%;
+        top: 95%;
+        left: -5px;
+
+        /* background: #FFDFE3; */
+        /* border-bottom: 4px solid #242424; */
+        width: 150%;
         padding: 0px;
-        margin: 0px;
+        /* margin: 0px; */
+        margin-top: 5px;
     }
-    .menu li{
+    .dark-mode .menu li{
         width: 100%;
+        background-color: black ;
+        color: #FFDFE3;
     }
-    nav .menu li a{
+    
+    .dark-mode .menu li button{
+        margin-bottom: 10px;
+    }
+    .dark-mode .menu li a{
         width: 100%;
         height: 40px;
         align-items: center;
         margin: 0px;
         padding: 25px;
-        border: 1px solid rgba(38,38,38,0.03);
+        /* border: 1px solid rgba(38,38,38,0.03); */
+        background-color: black;
     }
+    .dark-mode .menu li a:hover{
+        width: 100%;
+        height: 40px;
+        align-items: center;
+        margin: 0px;
+        padding: 25px;
+        /* border: 1px solid rgba(38,38,38,0.03); */
+        background-color: #2d2d2d;
+    }
+    .dark-mode .menu li button .btn-sn{
+        background-color: black ;
+        color: #FFDFE3;
+        width: 100%;
+        height: 40px;
+        border-radius: 0;
+        text-align: left;
+        padding-left: 60;
+    }
+
+    .dark-mode .dropdown{
+        width: 100%;
+        background-color: #2d2d2d;
+        color: #FFDFE3;
+    }
+
+    .dark-mode .dropdown-content a{
+        /* width: 100%; */
+        background-color: #2d2d2d;
+        color: #FFDFE3 ;
+    }
+
+    .dark-mode .dropdown-content a:hover{
+        /* width: 100%; */
+        background-color: white;
+        color: #414141;
+    }
+
+    .light-mode nav .menu{
+        display: none;
+        position: absolute;
+        top: 95%;
+        left: -5px;
+
+        /* background: #FFDFE3; */
+        /* border-bottom: 4px solid #242424; */
+        width: 150%;
+        padding: 0px;
+        /* margin: 0px; */
+        margin-top: 5px;
+    }
+    .light-mode .menu li{
+        width: 100%;
+        background-color: #FF6565 ;
+        color: #FFDFE3;
+    }
+
+    .light-mode .menu li button{
+        margin-bottom: 10px;
+    }
+    .light-mode .menu li a{
+        width: 100%;
+        height: 40px;
+        align-items: center;
+        margin: 0px;
+        padding: 25px;
+        /* border: 1px solid rgba(38,38,38,0.03); */
+        background-color: #FF6565;
+    }
+    .light-mode .menu li a:hover{
+        width: 100%;
+        height: 40px;
+        align-items: center;
+        margin: 0px;
+        padding: 25px;
+        /* border: 1px solid rgba(38,38,38,0.03); */
+        background-color: #853232;
+    }
+    .light-mode .menu li button .btn-sn{
+        background-color: #FF6565 ;
+        color: #FFDFE3;
+        width: 100%;
+        height: 40px;
+        border-radius: 0;
+        text-align: left;
+        padding-left: 60;
+    }
+
+    .light-mode .dropdown{
+        width: 100%;
+        background-color: #FF6565;
+        color: #FFDFE3;
+    }
+    
+    .light-mode .dropdown-content a{
+        /* width: 100%; */
+        background-color: #FFDFE3;
+        color: black ;
+    }
+
+    .light-mode .dropdown-content a:hover{
+        /* width: 100%; */
+        background-color: white;
+        color: black;
+    }
+
     nav .menu-icon{
         cursor: pointer;
         float: right;

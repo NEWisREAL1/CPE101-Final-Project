@@ -19,7 +19,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body id="body" class="dark-mode" onload="//loadMovies()">
+<body id="body" class="dark-mode" onload="loadMovies()">
     <!--naviation------------------------------>
     <nav>
         <!--logo------------------------------->
@@ -85,6 +85,29 @@
               <div style="margin-top: 5%; font-size: 25px;">
                 <div id="question-text"></div>
                 
+                <div id="result-warp-wrap2">
+                  <div class="result-warp">
+                    <img id="posterIMG-1" src="" class="resultPoster" style="display : none;">
+                    <div id="movieData-1" class="resultText" style="display : none;"></div>
+                  </div>
+                  <div class="result-warp">
+                    <img id="posterIMG-2" src="" class="resultPoster" style="display : none;">
+                    <div id="movieData-2" class="resultText" style="display : none;"></div>
+                  </div>
+                  <div class="result-warp">
+                    <img id="posterIMG-3" src="" class="resultPoster" style="display : none;">
+                    <div id="movieData-3" class="resultText" style="display : none;"></div>
+                  </div>
+                  <div class="result-warp">
+                    <img id="posterIMG-4" src="" class="resultPoster" style="display : none;">
+                    <div id="movieData-4" class="resultText" style="display : none;"></div>
+                  </div>
+                  <div class="result-warp">
+                    <img id="posterIMG-5" src="" class="resultPoster" style="display : none;">
+                    <div id="movieData-5" class="resultText" style="display : none;"></div>
+                  </div>
+                </div>
+
                 <div id="choice0" class="choice"></div>
                 <div id="choice1" class="choice"></div>
                 <div id="choice2" class="choice"></div>
@@ -98,7 +121,7 @@
                 
                 <div id="statusBox"></div>
                 
-                <div id="result-warp-wrap">
+                <div id="result-warp-wrap" class="randomPoster">
                   <div class="result-warp">
                     <img id="posterIMG0" src="" class="resultPoster" onclick="openPopup('filter0')">
                     <div id="movieData0" class="resultText"></div>
