@@ -1,3 +1,5 @@
+emitter.setMaxListeners(20);
+
 const express = require('express');
 const fs = require('fs');
 require('dotenv').config();

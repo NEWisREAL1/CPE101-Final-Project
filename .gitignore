@@ -1,4 +1,7 @@
-.env
-node_modules/
-data/
 Movie GU/
+data/
+node_modules/
+.firebase/
+.env
+firebase.json
+.firebaserc

@@ -1,3 +1,5 @@
+emitter.setMaxListeners(20);
+
 const data = {
     "genres": null,
     "type": null,
