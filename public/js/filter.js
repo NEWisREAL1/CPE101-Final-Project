@@ -236,6 +236,9 @@ async function searchMovies() {
     document.getElementById('keyword').innerText = `"${keyword}"`;
     const res = await fetch(`/api/search/${keyword}`);
     const results = await res.json();
+    if (results.Response == "False") {
+        document.getElementById('keyword').innerText = `"!!API ERROR!!" Try changing the search keyword.`;
+    }
     moviesData.search = results;
     for (let i = 0; i < results.length - 1; i++) {
         document.getElementById(`posterSearch${i}`).src = results[i].posterLink;

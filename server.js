@@ -389,33 +389,39 @@ app.get('/api/search/:keyword', async (req, res) => {
     console.log(`fetching in search function... keyword ${req.params.keyword}`);
     const searchRes = await fetch(`https://www.omdbapi.com/?s=${req.params.keyword}&apikey=${key}`);
     const results = await searchRes.json();
-    const resultsData = [];
-    for (let result of results.Search) {
-      const omdbInfo = await getOMDB(result.imdbID);
-      const movie = {};
-
-      const runtime = parseInt(omdbInfo.Runtime);
-      movie.runtime = `${runtime} min`;
-
-      movie.title = omdbInfo.Title;
-      movie.year = omdbInfo.Year;
-      movie.type = omdbInfo.Type;
-      movie.genres = omdbInfo.Genre.split(", ")
-      movie.language = omdbInfo.Language.split(", ");
-      movie.rated = omdbInfo.Rated;
-      movie.plot = omdbInfo.Plot;
-      movie.posterLink = omdbInfo.Poster;
-      movie.ratings = omdbInfo.Ratings;
-      movie.meta = omdbInfo.Metascore;
-      movie.imdbVotes = omdbInfo.imdbVotes;
-      resultsData.push(movie);
+    if (results.Response == 'False') {
+      console.log("!! Search Response False.");
+      res.json(results);
     }
-    res.json(resultsData)
+    else {
+      const resultsData = [];
+      for (let result of results.Search) {
+        const omdbInfo = await getOMDB(result.imdbID);
+        const movie = {};
+  
+        const runtime = parseInt(omdbInfo.Runtime);
+        movie.runtime = `${runtime} min`;
+  
+        movie.title = omdbInfo.Title;
+        movie.year = omdbInfo.Year;
+        movie.type = omdbInfo.Type;
+        movie.genres = omdbInfo.Genre.split(", ")
+        movie.language = omdbInfo.Language.split(", ");
+        movie.rated = omdbInfo.Rated;
+        movie.plot = omdbInfo.Plot;
+        movie.posterLink = omdbInfo.Poster;
+        movie.ratings = omdbInfo.Ratings;
+        movie.meta = omdbInfo.Metascore;
+        movie.imdbVotes = omdbInfo.imdbVotes;
+        resultsData.push(movie);
+      }
+      res.json(resultsData)
+    }
   }
   catch (err) {
     console.log('An error occurred.');
     console.error(err);
-    res.status(500).json({ error: 'Internal Server Error' });
+    //res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 

@@ -198,6 +198,21 @@ body{
     background-color: #FFDFE3;
 }
 
+#questioning {
+    min-height: 60svh;
+    display: none;
+}
+
+#question-text {
+    margin : 0.2rem;
+}
+
+.choice {
+    display: none;
+    margin : 0.5rem;
+    padding: 1rem;
+    transition: all 2ms linear;
+}
 
 body.dark-mode {
     background-color: rgb(41, 41, 41);
@@ -224,9 +239,24 @@ body.dark-mode {
     h1{
         color: #FFDFE3;
     }
+
     .popup {
         background-color: rgb(83, 83, 83);
         color: #FFDFE3;
+    }
+
+    #question-text {
+        color: white;
+    }
+
+    .choice {
+        background-color: #FFDFE3;
+        color: black;
+    }
+    
+    .choice:hover {
+        background-color: #5e5e5e;
+        color: white;
     }
 
 }
@@ -258,6 +288,20 @@ body.light-mode {
     .popup {
         background-color: #fac9cf;
         color: rgb(41, 41, 41);
+    }
+
+    #question-text {
+        color: black;
+    }
+
+    .choice {
+        background-color: #3a3a3a;
+        color: #f1f1f1;
+    }
+    
+    .choice:hover {
+        background-color: #FF6565;
+        color: black;
     }
     
 }
@@ -510,8 +554,16 @@ nav .menu-btn{
 }
 
 .result-warp {
+    border-radius: 5px;
+    box-shadow: 2px 2px 30px rgba(0,0,0,0.02);
     flex: 1 0 15%; /* Adjust the percentage as needed */
     box-sizing: border-box; /* Include padding and border in the box model */
+    transition: all 0.2ms ease;
+}
+
+.result-warp:hover {
+    transform: translateY(-10px);
+    transition: all 0.2ms ease;
 }
 
 .resultPoster {
@@ -529,7 +581,7 @@ nav .menu-btn{
 }
 
 /* Optional: Adjust styling for better aesthetics */
-.result-warp-wrap {
+#result-warp-wrap {
     padding: 1rem;
     justify-content: space-around; /* Adjust as needed */
     align-items: stretch; /* Adjust as needed */
@@ -557,29 +609,6 @@ nav .menu-btn{
     .result-warp {
         flex: 1 0 45%; /* Adjust for smaller screens */
     }
-}
-
-#questioning {
-    min-height: 60svh;
-    display: none;
-}
-
-#question-text {
-    margin : 0.2rem;
-    color: white;
-}
-
-.choice {
-    display: none;
-    margin : 0.5rem;
-    padding: 1rem;
-    background-color: #FFDFE3;
-    color: black;
-}
-
-.choice:hover {
-    background-color: #5e5e5e;
-    color: white;
 }
 
 @media(max-width:1100px){
