@@ -47,6 +47,7 @@ app.post('/api/filter', async (req, res) => {
     const filters = req.body;
     const data = await getData();
     console.log('Movies database fetched successfully.');
+    console.log('Start Filtering data...');
     const movieList = [];
 
     for (let i = 0; i < data.movies.length; i++) {
@@ -152,6 +153,10 @@ app.post('/api/filter', async (req, res) => {
         movie.imdbVotes = omdbInfo.imdbVotes;
         movieList.push(movie);
         console.log(`Movie founded, count ${movieList.length}`);
+        i += Math.floor(Math.random() * 9);
+      }
+      else {
+        console.log(`not legit ${i}, ${movie.title}`);
       }
 
       if (movieList.length >= 5) {

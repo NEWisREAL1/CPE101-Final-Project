@@ -92,7 +92,7 @@ let values = [];
 async function startQA(index) {
     document.getElementById('hero').style.display = 'none';
     document.getElementById('questioning').style.display = 'block';
-    if (index == 5) {
+    if (index == 6) {
         document.getElementById("question-text").style.display = 'none';
         filterMovies();
     }
@@ -123,25 +123,39 @@ function nextQA(index, value) {
     switch(index) {
         case 0:
             data.genres = value;
+            startQA(1);
             break;
         case 1:
             data.type = value;
+            if (data.type == 'movie') {
+                startQA(2);
+            }
+            if (data.type == 'tvSeries') {
+                startQA(3);
+            }
             break;
         case 2:
             data.minRunTime = value[0];
             data.maxRunTime = value[1];
+            startQA(4);
             break;
         case 3:
-            data.language = value;
+            data.minRunTime = value[0];
+            data.maxRunTime = value[1];
+            startQA(4);
             break;
         case 4:
+            data.language = value;
+            startQA(5);
+            break;
+        case 5:
             data.startYear = value[0];
             data.endYear = value[1];
+            startQA(6);
             break;
     }
 
     console.log(data);
-    startQA(index + 1);
 }
 
 async function filterMovies() {
@@ -237,7 +251,9 @@ async function searchMovies() {
     const res = await fetch(`/api/search/${keyword}`);
     const results = await res.json();
     if (results.Response == "False") {
-        document.getElementById('keyword').innerText = `"!!API ERROR!!" Try changing the search keyword.`;
+        document.getElementById('searchSuccess').style.display = 'none';
+        document.getElementById('searchFail').style.display = 'block';
+        document.getElementById('keywordFail').innerText = `"${keyword}"`;
     }
     moviesData.search = results;
     for (let i = 0; i < results.length - 1; i++) {

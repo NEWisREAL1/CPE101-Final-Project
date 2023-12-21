@@ -604,6 +604,14 @@ nav .menu-btn{
     margin-bottom: 16px; /* Adjust the bottom margin for vertical spacing */
 }
 
+#searchFail {
+    display: none;
+    text-align: center;
+    padding: auto;
+    min-height: 100vh;
+    font-size: 1.5rem;
+}
+
 /* Media query for responsiveness */
 @media (max-width: 768px) {
     .result-warp {

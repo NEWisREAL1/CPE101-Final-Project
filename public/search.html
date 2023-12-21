@@ -39,20 +39,11 @@
         </label>
         <!--manu------------------------------->
         <div class="menu" >
-            <li><a href="#" style="text-align: top; color: #FFDFE3;">Home</a></li>
-            <div class="dropdown">
-                <li><a href="#" style="text-align: top; color: #FFDFE3;" >More</a></li>
-                <div class="dropdown-content">
-                  <a href="#new ">New movies</a>
-                  <a href="#Action">Action movies</a>
-                    <a href="#Horror">Horror movies</a>
-                    <a href="#">Action movies</a>
-                    <a href="#">Action movies</a>
-                    <a href="#">Action movies</a>
-                  </div>
+            <li><a href="index.html" style="text-align: top; color: #FFDFE3;">Home</a></li>
+            
             </div>
             <!-- <li><button type="button" class="btn-sn" name="dark_light" onclick="toggleDarkLight()"><i class="fa fa-sun-o" aria-hidden="true"></i></button></li> &nbsp; -->
-            <li>
+            <li style="list-style: none;">
               <!-- <button type="button" class="btn-sn" onclick="toggleDarkLight()">
                 <i class="fa fa-sun-o" aria-hidden="true"></i> | <i class="fa fa-moon-o" aria-hidden="true"></i>
               </button> -->
@@ -115,7 +106,8 @@
                     <button type="button" onclick="closePopup()">Close</button>
                   </div>
             <br><br><br>
-            <h1 class="showcase-heading" id="new">Result for <span id="keyword"></span></h1>
+            <section id="searchSuccess">
+              <h1 class="showcase-heading" id="new">Results for <span id="keyword"></span></h1>
             <!--showcase-box----------------------------------->
             <ul class="search-result">
                 <!--box-1-------------------------------------->
@@ -242,6 +234,11 @@
                       </button>
                     </li>
             </ul>
+            </section>
+            <section id="searchFail">
+              Can't Find Movies For <span id="keywordFail"></span>.<br>
+              Please Try Again With Different Keyword.
+            </section>
           </section>
     <!--footer------------------------------------->
     <footer>
